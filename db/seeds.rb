@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+topic       = Topic.create(name: "Chickens of the World")
+
+breed       = Question.create(name: "breed", topic: topic)
+comb        = Question.create(name: "comb", topic: topic)
+type        = Question.create(name: "type", topic: topic)
+broodiness  = Question.create(name: "broodiness", topic: topic)
+
+yokohama    = Fact.create(topic: topic)
+  Answer.create(question: breed, data: 'Yokohama', fact: yokohama)
+  Answer.create(question: comb, data: 'walnut', fact: yokohama)
+  # You are not restricted to just one answer per question per fact
+  Answer.create(question: type, data: 'light breed', fact: yokohama)
+  Answer.create(question: type, data: 'softfeather', fact: yokohama)
+  Answer.create(question: broodiness, data: 'rarely', fact: yokohama)
+
+
