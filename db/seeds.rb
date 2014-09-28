@@ -13,4 +13,5 @@ yokohama    = Fact.create(topic: topic)
   Answer.create(question: type, data: 'softfeather', fact: yokohama)
   Answer.create(question: broodiness, data: 'rarely', fact: yokohama)
 
-
+owner       = User.create
+yokohama.populate_reviews(owner)

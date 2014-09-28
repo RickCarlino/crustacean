@@ -15,7 +15,7 @@ class Answer < ActiveRecord::Base
     questions.where.not(id: question.id).map do |ques|
       # ^ The .not() part prevents self referencing questions like
       # `What is the color of red?` (tomato.color -> tomato.color)
-      Review.create(fact: self, question: ques, owner: owner)
+      Review.create(fact: fact, question: ques, owner: owner)
     end
   end
 end
