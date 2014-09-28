@@ -14,4 +14,5 @@ yokohama    = Fact.create(topic: topic)
   Answer.create(question: broodiness, data: 'rarely', fact: yokohama)
 
 owner       = User.create
+
 yokohama.populate_reviews(owner)

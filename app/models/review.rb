@@ -5,4 +5,10 @@ class Review < ActiveRecord::Base
   belongs_to :fact
   validates :fact, presence: true
   belongs_to :owner, polymorphic: true
+
+  delegate :answers, to: :question
+
+  def answer_key
+    { question.name => answers.pluck(:data) }
+  end
 end
