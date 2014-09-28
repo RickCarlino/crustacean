@@ -12,7 +12,7 @@ class Answer < ActiveRecord::Base
   def populate_reviews(owner)
     # For each of the answers questions, create a review pair, unless the
     # review pair is self referencing.
-    questions.where.not(id: question.id) do |ques|
+    questions.where.not(id: question.id).map do |ques|
       # ^ The .not() part prevents self referencing questions like
       # `What is the color of red?` (tomato.color -> tomato.color)
       Review.create(fact: self, question: ques, owner: owner)
