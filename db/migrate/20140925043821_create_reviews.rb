@@ -3,6 +3,7 @@ class CreateReviews < ActiveRecord::Migration
     create_table :reviews do |t|
       t.references :owner, polymorphic: true
       t.references :question
+      t.references :answer
       t.references :fact
       t.datetime :last_review
       t.datetime :next_review

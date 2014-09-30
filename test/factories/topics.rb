@@ -18,5 +18,20 @@ FactoryGirl.define do
         create(:answer, question: broodiness, data: 'rarely', fact: yokohama)
       end
     end
+
+    trait :pokemon do
+      after :create do |topic|
+        pokedex = create(:question, name: "pokedex", topic: topic)
+        name  = create(:question, name: "name", topic: topic)
+        type  = create(:question, name: "type", topic: topic)
+
+        bulbasaur = create(:fact, topic: topic)
+
+        create(:answer, question: pokedex, data: '001', fact: bulbasaur)
+        create(:answer, question: name, data: 'Bulbasaur', fact: bulbasaur)
+        create(:answer, question: type, data: 'grass', fact: bulbasaur)
+        create(:answer, question: type, data: 'poison', fact: bulbasaur)
+      end
+    end
   end
 end

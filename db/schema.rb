@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140925043821) do
     t.integer  "owner_id"
     t.string   "owner_type"
     t.integer  "question_id"
+    t.integer  "answer_id"
     t.integer  "fact_id"
     t.datetime "last_review"
     t.datetime "next_review"

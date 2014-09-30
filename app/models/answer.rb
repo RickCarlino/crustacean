@@ -6,6 +6,8 @@ class Answer < ActiveRecord::Base
   belongs_to :fact
   validates :fact, presence: true
 
+  has_many :reviews, dependent: :destroy
+
   delegate :topic, to: :question
   delegate :questions, to: :topic
 
@@ -15,7 +17,10 @@ class Answer < ActiveRecord::Base
     questions.where.not(id: question.id).map do |ques|
       # ^ The .not() part prevents self referencing questions like
       # `What is the color of red?` (tomato.color -> tomato.color)
-      Review.create(fact: fact, question: ques, owner: owner)
+      Review.create(fact: fact,
+                    question: ques,
+                    answer: self,
+                    owner: owner)
     end
   end
 end
