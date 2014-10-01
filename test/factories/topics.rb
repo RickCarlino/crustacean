@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :topic do
+
     trait :chickens do
       after(:create) do |topic|
         breed = create(:question, name: "breed", topic: topic)
