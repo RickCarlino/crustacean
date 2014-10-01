@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140925043821) do
   create_table "questions", force: true do |t|
     t.integer  "topic_id"
     t.string   "name"
+    t.boolean  "special",    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,7 +41,6 @@ ActiveRecord::Schema.define(version: 20140925043821) do
     t.integer  "question_id"
     t.integer  "answer_id"
     t.integer  "fact_id"
-    t.datetime "last_review"
     t.datetime "next_review"
     t.datetime "created_at"
     t.datetime "updated_at"

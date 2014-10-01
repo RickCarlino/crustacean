@@ -8,5 +8,5 @@ class Review < ActiveRecord::Base
   belongs_to :answer
 
   delegate :answers, to: :question
-
+  before_create { |rev| rev.next_review = Time.now }
 end
