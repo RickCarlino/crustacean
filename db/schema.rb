@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140925043821) do
     t.integer  "answer_id"
     t.integer  "fact_id"
     t.datetime "next_review"
+    t.datetime "last_review"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -6,6 +6,7 @@ class CreateReviews < ActiveRecord::Migration
       t.references :answer
       t.references :fact
       t.datetime :next_review
+      t.datetime :last_review
       t.timestamps
     end
   end
