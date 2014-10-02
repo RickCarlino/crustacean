@@ -8,10 +8,12 @@ class Review < ActiveRecord::Base
   belongs_to :answer
 
   delegate :answers, to: :question
+
   before_create do |rev|
     rev.next_review = Time.now
     rev.last_review = Time.now
   end
+
   # TODO Test mark_correct, mark_incorrect and their bang(!) counterparts
   def mark_correct(time = Time.now)
     schedule    = ReviewScheduler.calculate(last_review, time)
