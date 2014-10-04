@@ -14,6 +14,10 @@ class Review < ActiveRecord::Base
     rev.last_review = Time.now
   end
 
+  def choices
+    @choices ||= ChoiceFactory.build(self)
+  end
+
   # TODO Test mark_correct, mark_incorrect and their bang(!) counterparts
   def mark_correct(time = Time.now)
     schedule    = ReviewScheduler.calculate(last_review, time)
