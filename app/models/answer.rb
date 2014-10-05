@@ -15,6 +15,8 @@ class Answer < ActiveRecord::Base
     # For each of the answers questions, create a review pair, unless the
     # review pair is self referencing or inadequately unique to be useful for
     #review.
+    # TODO Add a select statment here so it doesnt return crappy responses like
+    # [nil, #<answer>, nil]
     questions.where.not(id: question.id).map do |ques|
       # ^ The .not() part prevents self referencing questions like
       # `What is the color of red?` (tomato.color -> tomato.color)

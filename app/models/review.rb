@@ -14,6 +14,19 @@ class Review < ActiveRecord::Base
     rev.last_review = Time.now
   end
 
+  def self.create_for(user, topic:)
+    ids  = Review.where(owner: user).pluck(:fact_id)
+    fact = Fact.where.not(id: ids).order('random()').limit(1).first
+    fact.populate_reviews(user)
+  end
+
+  def self.due(owner)
+    Review.where("next_review < ? AND owner_id = ? AND owner_type = ?",
+                 Time.now,
+                 owner.id,
+                 owner.class)
+  end
+
   def choices
     @choices ||= ChoiceFactory.build(self)
   end
