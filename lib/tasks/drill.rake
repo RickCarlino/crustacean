@@ -43,10 +43,10 @@ class Drill
 
   def review
     @reviews = Review.due(user)
-    @reviews.map do |r|
-      {question:  r.question.name,
-       answer:    r.answer.data,
-       responses: r.question.answers.where(fact: r.fact).pluck(:data)}
+    a = @reviews.map do |r|
+      {owner:    r.owner.id,
+       answers:  r.question.answers.where(fact: r.fact).pluck(:data),
+       question: r.answer.data}
     end
     binding.pry
   end

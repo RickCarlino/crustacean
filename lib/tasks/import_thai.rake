@@ -6,7 +6,7 @@ namespace :import do
     Topic.destroy_all
     puts 'OK'
     topic   = Topic.create(name: 'Thai')
-
+    user    = User.create
     english = Question.create(topic: topic, name: 'English',    special: false)
     thai    = Question.create(topic: topic, name: 'Thai',       special: true)
     classif = Question.create(topic: topic, name: 'Classifier', special: false)
@@ -32,9 +32,9 @@ namespace :import do
       end
       word = Fact.create(topic: topic)
       eng.map{|e| Answer.create(question: english, fact: word, data: e)}
-      Answer.create(question: thai, fact: word, data: th)
+                  Answer.create(question: thai, fact: word, data: th)
       cls.map{|c| Answer.create(question: classif, fact: word, data: c)} if cls
-      typ.map{|t| Answer.create(question: english, fact: word, data: t)}
+      typ.map{|t| Answer.create(question: pt_spch, fact: word, data: t)}
       print '-'
     end
   end
