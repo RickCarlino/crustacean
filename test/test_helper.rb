@@ -19,4 +19,12 @@ class ActiveSupport::TestCase
   def topic
     @topic ||= FactoryGirl.create(:topic, :chickens)
   end
+
+  def create(*optns)
+    FactoryGirl.create(*optns)
+  end
+
+  def build(*optns)
+    FactoryGirl.build(*optns)
+  end
 end

@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 20140925043821) do
   create_table "questions", force: true do |t|
     t.integer  "topic_id"
     t.string   "name"
-    t.boolean  "special",    default: true
+    t.string   "review_strategy", default: "all"
+    t.string   "only_review_id"
+    t.boolean  "special",         default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

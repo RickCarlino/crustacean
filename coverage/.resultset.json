@@ -288,7 +288,27 @@
         1,
         null,
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         null
@@ -379,6 +399,42 @@
         null,
         null
       ],
+      "/Users/rick/code/srs/app/models/question.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        12,
+        11,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/rick/code/srs/app/models/topic.rb": [
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
       "/Users/rick/code/srs/app/models/review.rb": [
         1,
         null,
@@ -436,23 +492,6 @@
         null,
         null
       ],
-      "/Users/rick/code/srs/app/models/question.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/rick/code/srs/app/models/topic.rb": [
-        null,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null
-      ],
       "/Users/rick/code/srs/app/models/fact.rb": [
         1,
         1,
@@ -507,7 +546,7 @@
         null
       ]
     },
-    "timestamp": 1412771051
+    "timestamp": 1412818888
   },
   "Unknown Test Framework": {
     "coverage": {
