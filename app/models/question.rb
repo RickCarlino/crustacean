@@ -21,5 +21,8 @@ class Question < ActiveRecord::Base
     end
   end
   # === BOOP BEEP END COMPLICATED STUFF ===
-
+  def make_reviews_for(owner, fact)
+    answers.each { |ans| answers.make_reviews_for(owner, fact)}
+    Review.create(owner: owner, fact: fact, question: self)
+  end
 end

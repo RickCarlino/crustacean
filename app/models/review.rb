@@ -14,8 +14,14 @@ class Review < ActiveRecord::Base
     rev.last_review = Time.now
   end
 
-  def self.create_for(user, topic:)
-    ids  = Review.where(owner: user).pluck(:fact_id)
+  def self.create_for(user, quantity = 1, topic:)
+    quantity.times { random_review_for(user, topic) }
+  end
+
+  def self.random_review_for(user, topic)
+    # TODO optimize. Don't feel like dealing with AR quirckiness right now
+    ids  = Review.joins(:fact)
+                 .where(owner: user, fact: {topic: topic}).pluck(:fact_id)
     fact = Fact.where.not(id: ids).order('random()').limit(1).first
     fact.populate_reviews(user)
   end

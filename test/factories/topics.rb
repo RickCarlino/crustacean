@@ -5,12 +5,18 @@ FactoryGirl.define do
 
     trait :chickens do
       after(:create) do |topic|
-        breed = create(:question, name: "breed", topic: topic)
-        comb  = create(:question, name: "comb", topic: topic, special: false)
-        type  = create(:question, name: "type", topic: topic, special: false)
+        breed = create(:question, name: "breed",
+                                  topic: topic,
+                                  review_strategy: 'all')
+        comb  = create(:question, name: "comb",
+                                  topic: topic,
+                                  review_strategy: 'none')
+        type  = create(:question, name: "type",
+                                  topic: topic,
+                                  review_strategy: 'none')
         broodiness = create(:question, name: "broodiness",
                                        topic: topic,
-                                       special: false)
+                                       review_strategy: 'none')
 
         yokohama = create(:fact, topic: topic)
 
