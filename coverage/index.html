@@ -14,26 +14,26 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-10-12T18:25:01-05:00">2014-10-12T18:25:01-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-10-12T18:55:24-05:00">2014-10-12T18:55:24-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">85.71%</span></span>
+    (<span class="covered_percent"><span class="yellow">86.05%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.06
+         1.4
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>17</b> files in total.
-    <b>84</b> relevant lines. 
-    <span class="green"><b>72</b> lines covered</span> and
+    <b>86</b> relevant lines. 
+    <span class="green"><b>74</b> lines covered</span> and
     <span class="red"><b>12</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -57,17 +57,17 @@
         <td>11</td>
         <td>11</td>
         <td>0</td>
-        <td>1.2</td>
+        <td>2.2</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#fd9f6a99db7d9d2b0dec528961b841c1015820cb" class="src_link" title="app/models/fact.rb">app/models/fact.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>8</td>
-        <td>5</td>
-        <td>5</td>
+        <td>10</td>
+        <td>7</td>
+        <td>7</td>
         <td>0</td>
-        <td>1.0</td>
+        <td>1.6</td>
       </tr>
       
       <tr>
@@ -87,7 +87,7 @@
         <td>34</td>
         <td>23</td>
         <td>11</td>
-        <td>0.8</td>
+        <td>1.2</td>
       </tr>
       
       <tr>
@@ -334,14 +334,14 @@
           <code class="ruby">  def create_review_for(user, topic)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="15">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="6" data-linenumber="15">
+          <span class="hits">6</span>
           
           <code class="ruby">    question.review_against.map do |ques|</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="16">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="9" data-linenumber="16">
+          <span class="hits">9</span>
           
           <code class="ruby">      Review.create(owner: user, question: ques, answer: self, fact: fact)</code>
         </li>
@@ -373,8 +373,8 @@
     <h3>app/models/fact.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>5</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>7</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -418,13 +418,25 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="7">
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  def create_review_for(user, topic)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="8">
+        <li class="covered" data-hits="5" data-linenumber="8">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    answers.map { |ans| ans.create_review_for(user, topic) }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
           
           
           <code class="ruby">end</code>
@@ -586,14 +598,14 @@
           <code class="ruby">  before_create do |rev|</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="13">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="10" data-linenumber="13">
+          <span class="hits">10</span>
           
           <code class="ruby">    rev.next_review = Time.now</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="14">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="10" data-linenumber="14">
+          <span class="hits">10</span>
           
           <code class="ruby">    rev.last_review = Time.now</code>
         </li>

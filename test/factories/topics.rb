@@ -6,6 +6,7 @@ FactoryGirl.define do
     trait :korean do
       after(:create) do |tpc|
         tpc.update_attributes(name: '한국어')
+
         한글 = create(:question, name: '한글', topic: tpc)
         영어 = create(:question, name: '영어', topic: tpc)
         품사 = create(:question, name: '품사', topic: tpc)
