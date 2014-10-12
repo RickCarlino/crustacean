@@ -3,43 +3,25 @@
 FactoryGirl.define do
   factory :topic do
 
-    trait :chickens do
-      after(:create) do |topic|
-        breed = create(:question, name: "breed",
-                                  topic: topic,
-                                  review_strategy: 'all')
-        comb  = create(:question, name: "comb",
-                                  topic: topic,
-                                  review_strategy: 'none')
-        type  = create(:question, name: "type",
-                                  topic: topic,
-                                  review_strategy: 'none')
-        broodiness = create(:question, name: "broodiness",
-                                       topic: topic,
-                                       review_strategy: 'none')
+    trait :korean do
+      after(:create) do |tpc|
+        tpc.update_attributes(name: '한국어')
+        한글 = create(:question, name: '한글', topic: tpc)
+        영어 = create(:question, name: '영어', topic: tpc)
+        품사 = create(:question, name: '품사', topic: tpc)
+        발음 = create(:question, name: '발음', topic: tpc)
 
-        yokohama = create(:fact, topic: topic)
+        한글.update_attributes(review_against: [영어, 품사])
+        영어.update_attributes(review_against: [한글, 품사, 발음])
+        품사.update_attributes(review_against: [])
+        발음.update_attributes(review_against: [영어, 품사])
 
-        create(:answer, question: breed, data: 'Yokohama', fact: yokohama)
-        create(:answer, question: comb, data: 'walnut', fact: yokohama)
-        create(:answer, question: type, data: 'light breed', fact: yokohama)
-        create(:answer, question: type, data: 'softfeather', fact: yokohama)
-        create(:answer, question: broodiness, data: 'rarely', fact: yokohama)
-      end
-    end
+        호박 = Fact.create(topic: tpc)
 
-    trait :pokemon do
-      after :create do |topic|
-        pokedex = create(:question, name: "pokedex", topic: topic)
-        name  = create(:question, name: "name", topic: topic)
-        type  = create(:question, name: "type", topic: topic)
-
-        bulbasaur = create(:fact, topic: topic)
-
-        create(:answer, question: pokedex, data: '001', fact: bulbasaur)
-        create(:answer, question: name, data: 'Bulbasaur', fact: bulbasaur)
-        create(:answer, question: type, data: 'grass', fact: bulbasaur)
-        create(:answer, question: type, data: 'poison', fact: bulbasaur)
+        Answer.create(data: '호박',     question: 한글, fact: 호박)
+        Answer.create(data: 'pumpkin', question: 영어, fact: 호박)
+        Answer.create(data: '명사',     question: 품사, fact: 호박)
+        Answer.create(data: '호박.mp3', question: 발음, fact: 호박)
       end
     end
   end

@@ -14,8 +14,8 @@ class Review < ActiveRecord::Base
     rev.last_review = Time.now
   end
 
-  def self.create_for(user, quantity = 1, topic:)
-    quantity.times { random_review_for(user, topic) }
+  def create_for(user, topic)
+    raise 'lol'
   end
 
   def self.random_review_for(user, topic)

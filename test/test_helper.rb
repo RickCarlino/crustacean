@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def topic
-    @topic ||= FactoryGirl.create(:topic, :chickens)
+    @topic ||= FactoryGirl.create(:topic, :korean)
   end
 
   def create(*optns)
