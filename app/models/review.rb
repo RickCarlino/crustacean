@@ -1,3 +1,4 @@
+require 'choice_factory'
 class Review < ActiveRecord::Base
   # TODO Default times for review fileds (last, next)
   belongs_to :question
