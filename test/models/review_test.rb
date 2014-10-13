@@ -16,8 +16,4 @@ class ReviewTest < ActiveSupport::TestCase
     assert_equal 0, (last - _next),
       'Time difference should equal 0 when marked incorrect'
   end
-
-  test '#mark_correct!' do
-    skip 'Do this next.'
-  end
 end

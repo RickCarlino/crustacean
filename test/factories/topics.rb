@@ -2,28 +2,33 @@
 
 FactoryGirl.define do
   factory :topic do
+    name { Faker::Hacker.ingverb }
+    after(:create) do |top|
+      create_list(:question, 4, topic: top)
+      create_list(:fact, 4, topic: top)
+    end
+  end
 
-    trait :korean do
-      after(:create) do |tpc|
-        tpc.update_attributes(name: '한국어')
+  factory :korean_topic, class: Topic do
+    after(:create) do |tpc|
+      tpc.update_attributes(name: '한국어')
 
-        한글 = create(:question, name: '한글', topic: tpc)
-        영어 = create(:question, name: '영어', topic: tpc)
-        품사 = create(:question, name: '품사', topic: tpc)
-        발음 = create(:question, name: '발음', topic: tpc)
+      한글 = create(:question, name: '한글', topic: tpc)
+      영어 = create(:question, name: '영어', topic: tpc)
+      품사 = create(:question, name: '품사', topic: tpc)
+      발음 = create(:question, name: '발음', topic: tpc)
 
-        한글.update_attributes(review_against: [영어, 품사])
-        영어.update_attributes(review_against: [한글, 품사, 발음])
-        품사.update_attributes(review_against: [])
-        발음.update_attributes(review_against: [영어, 품사])
+      한글.update_attributes(review_against: [영어, 품사])
+      영어.update_attributes(review_against: [한글, 품사, 발음])
+      품사.update_attributes(review_against: [])
+      발음.update_attributes(review_against: [영어, 품사])
 
-        호박 = Fact.create(topic: tpc)
+      호박 = Fact.create(topic: tpc)
 
-        Answer.create(data: '호박',     question: 한글, fact: 호박)
-        Answer.create(data: 'pumpkin', question: 영어, fact: 호박)
-        Answer.create(data: '명사',     question: 품사, fact: 호박)
-        Answer.create(data: '호박.mp3', question: 발음, fact: 호박)
-      end
+      Answer.create(data: '호박',     question: 한글, fact: 호박)
+      Answer.create(data: 'pumpkin', question: 영어, fact: 호박)
+      Answer.create(data: '명사',     question: 품사, fact: 호박)
+      Answer.create(data: '호박.mp3', question: 발음, fact: 호박)
     end
   end
 end

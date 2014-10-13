@@ -1,3 +1,9 @@
+# require 'simplecov'
+# SimpleCov.start do
+#   add_filter "/test/"
+#   add_filter "lib/tasks/"
+# end
+
 class Drill
   attr_accessor :user, :topic, :reviews
 
@@ -50,6 +56,14 @@ class Drill
 
   def review(review)
     binding.pry
+    puts '='*review.prompt.length
+    puts review.prompt
+    puts '='*review.prompt.length
+    review.choices.each_with_index do |choice, index|
+      puts "#{index + 1}: #{choice}"
+    end
+    exit if input == 'q'
+    review_or_learn
   end
 
   def input

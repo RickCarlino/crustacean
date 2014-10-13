@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :answer do
     question
     fact
+    data { Faker::Hacker.adjective }
   end
 end

@@ -15,10 +15,6 @@ class Review < ActiveRecord::Base
     rev.last_review = Time.now
   end
 
-  def create_for(user, topic)
-    raise 'lol'
-  end
-
   def self.random_review_for(user, topic)
     # TODO optimize. Don't feel like dealing with AR quirckiness right now
     ids  = Review.joins(:fact)
@@ -34,16 +30,24 @@ class Review < ActiveRecord::Base
                  owner.class)
   end
 
+  # A list of possible choices against which the student can choose
   def choices
     @choices ||= ChoiceFactory.build(self)
   end
 
+  # The question that the student is quizzed against.
   def prompt
     answer.data
   end
 
+  # The `data` of the correct answer(s)
   def correct_answers
     Answer.where(question: question, fact: fact).pluck(:data)
+  end
+
+  # Propose an array of strings as an answer to the review's question
+  def propose(answer)
+    return true if answer.sort == correct_answers.sort
   end
 
   # TODO Test mark_correct, mark_incorrect and their bang(!) counterparts

@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start do
   add_filter "/test/"
+  add_filter "/config/"
 end
 
 ENV["RAILS_ENV"] ||= "test"
@@ -19,7 +20,7 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def topic
-    @topic ||= FactoryGirl.create(:topic, :korean)
+    @topic ||= FactoryGirl.create(:korean_topic)
   end
 
   def create(*optns)
