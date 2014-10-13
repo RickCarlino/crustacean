@@ -4,7 +4,7 @@ class Fact < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :answers
 
-  def create_review_for(user, topic)
+  def create_review_for(user)
     answers.map { |ans| ans.create_review_for(user, topic) }
   end
 end

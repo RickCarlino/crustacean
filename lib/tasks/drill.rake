@@ -8,22 +8,23 @@ class Drill
   def initialize
     set_user
     set_topic
-    set_reviews
+    @reviews = Review.due(@user)
     review_or_learn
   end
 
   def set_user
+    User.create if User.count < 1
     puts "Enter User ID #{User.pluck(:id).first(5)}:"
     @user = User.find(input)
   end
 
   def set_topic
-    puts puts "Enter Topic ID:"
+    puts "Enter Topic ID:"
     Topic.all.each{|t| puts "#{t.id}: #{t.name}"}
-    @topic   = Topic.find(input)
+    @topic = Topic.find(input)
   end
 
-  def set_reviews
+  def reviews
     @reviews = Review.due(@user)
   end
 
@@ -32,22 +33,22 @@ class Drill
       puts 'No reviews due. Lets learn new material instead.'
       learn
     else
-      review
+      review_all
     end
   end
 
   def learn
-    Review.create_for user, topic: topic
-    review
+    bad  = Review.where(owner: @user).pluck(:fact_id)
+    fact = Fact.where.not(id: bad).order('random()').first
+    fact.create_review_for(@user)
+    review_all
   end
 
-  def review
-    @reviews = Review.due(user)
-    a = @reviews.map do |r|
-      {owner:    r.owner.id,
-       answers:  r.question.answers.where(fact: r.fact).pluck(:data),
-       question: r.answer.data}
-    end
+  def review_all
+    @reviews.each{ |r| review(r) }
+  end
+
+  def review(review)
     binding.pry
   end
 

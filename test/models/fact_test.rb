@@ -6,7 +6,7 @@ class FactTest < ActiveSupport::TestCase
     user = create(:user)
     topic
     fct = Fact.last
-    result    = fct.create_review_for(user, topic)
+    result    = fct.create_review_for(user)
     new_count = Review.count
     expected_count = Question.all.pluck(:review_against).map(&:count).sum
     assert_equal expected_count, new_count,

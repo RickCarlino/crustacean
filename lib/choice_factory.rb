@@ -3,6 +3,6 @@
 class ChoiceFactory
   # Returns an array of strings representing possible Answer#data().
   def self.build(review)
-
+    correct = review.answer.data
   end
 end
