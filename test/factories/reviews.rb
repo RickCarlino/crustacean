@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :review do
     question
     fact
+    answer
     association :owner, factory: :user
   end
 end

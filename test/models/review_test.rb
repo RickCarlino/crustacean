@@ -33,7 +33,22 @@ class ReviewTest < ActiveSupport::TestCase
     Timecop.return
   end
 
-  test 'attempt' do
-    # . . .
+  test 'due' do
+    review
+    start_time = Time.now
+    Timecop.freeze start_time
+    review.mark_correct!(start_time + 5.minutes)
+    assert_empty Review.due(review.owner),
+      'review shouldnt be due after marking it correct'
+    Timecop.travel review.next_review
+    refute_empty Review.due(review.owner),
+      'review should show up on review list after it is due'
+    assert_equal review.id, Review.due(review.owner).first.id
+    Timecop.return
   end
+
+  test 'choices' do
+    assert_equal review.choices, ChoiceFactory.build(review)
+  end
+
 end
