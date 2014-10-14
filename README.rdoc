@@ -1,3 +1,1 @@
-TODO:
- * example table graphic
- * `review` must reference `topic`
+![Schema Diagram](https://raw.githubusercontent.com/rickcarlino/crustacean/master/schema.png)
