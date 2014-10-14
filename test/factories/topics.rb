@@ -4,8 +4,12 @@ FactoryGirl.define do
   factory :topic do
     name { Faker::Hacker.ingverb }
     after(:create) do |top|
-      create_list(:question, 4, topic: top)
-      create_list(:fact, 4, topic: top)
+      ques  = create_list(:question, 4, topic: top)
+      facts = create_list(:fact, 4, topic: top)
+      ques.each do |question|
+        question.update_attributes(review_against: (ques - [question]))
+        2.times { create(:answer, question: question, fact: facts.sample) }
+      end
     end
   end
 

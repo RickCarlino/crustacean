@@ -9,6 +9,7 @@ class Review < ActiveRecord::Base
   belongs_to :answer
 
   delegate :answers, to: :question
+  delegate :data, to: :answer
 
   before_create do |rev|
     rev.next_review = Time.now
@@ -18,7 +19,7 @@ class Review < ActiveRecord::Base
   def self.random_review_for(user, topic)
     # TODO optimize. Don't feel like dealing with AR quirckiness right now
     ids  = Review.joins(:fact)
-                 .where(owner: user, fact: {topic: topic}).pluck(:fact_id)
+                 .where(owner: user, facts: {topics: topic}).pluck(:fact_id)
     fact = Fact.where.not(id: ids).order('random()').limit(1).first
     fact.populate_reviews(user)
   end
@@ -35,26 +36,21 @@ class Review < ActiveRecord::Base
     @choices ||= ChoiceFactory.build(self)
   end
 
-  # The question that the student is quizzed against.
-  def prompt
-    answer.data
-  end
-
   # The `data` of the correct answer(s)
   def correct_answers
     Answer.where(question: question, fact: fact).pluck(:data)
   end
 
   # Propose an array of strings as an answer to the review's question
-  def propose(answer)
-    return true if answer.sort == correct_answers.sort
+  def attempt(answer)
+    answer.sort == correct_answers.sort
   end
 
   # TODO Test mark_correct, mark_incorrect and their bang(!) counterparts
   def mark_correct(time = Time.now)
-    schedule    = ReviewScheduler.calculate(last_review, time)
-    last_review = time
-    next_review = schedule
+    schedule    = ReviewScheduler.calculate(self.last_review, time)
+    self.last_review = time
+    self.next_review = schedule
   end
 
   def mark_correct!(time = Time.now)

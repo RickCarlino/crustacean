@@ -30,4 +30,5 @@ class ActiveSupport::TestCase
   def build(*optns)
     FactoryGirl.build(*optns)
   end
+
 end

@@ -5,6 +5,7 @@ gem 'rails'
 gem 'sqlite3'
 
 group :development, :test do
+  gem 'timecop'
   gem 'factory_girl_rails'
   gem 'pry'
   gem 'simplecov'
