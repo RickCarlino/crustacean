@@ -17,6 +17,7 @@ class Review < ActiveRecord::Base
   end
 
   def self.random_review_for(user, topic)
+    raise 'Do I still need this?'
     # TODO optimize. Don't feel like dealing with AR quirckiness right now
     ids  = Review.joins(:fact)
                  .where(owner: user, facts: {topics: topic}).pluck(:fact_id)
@@ -24,15 +25,19 @@ class Review < ActiveRecord::Base
     fact.populate_reviews(user)
   end
 
-  def self.due(owner)
-    Review.where("next_review < ? AND owner_id = ? AND owner_type = ?",
-                 Time.now,
-                 owner.id,
-                 owner.class)
+  def self.due(owner, topic_id)
+    join  = "JOIN answers ON reviews.answer_id = answers.id JOIN questions on "\
+            "questions.id = answers.question_id JOIN topics ON questions."\
+            "topic_id = topics.id"
+    query = "owner_type = ? AND owner_id = ? AND topics.id = ? AND"\
+            " next_review < ?"
+    terms = [query, owner.class, owner.id, topic_id, Time.now]
+    self.joins(join).where(*terms)
   end
 
   # A list of possible choices against which the student can choose
   def choices
+    # TODO Convert choices to a hypermedia URL to prevent N+1?
     @choices ||= ChoiceFactory.build(self)
   end
 

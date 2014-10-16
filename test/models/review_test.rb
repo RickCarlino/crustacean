@@ -35,15 +35,16 @@ class ReviewTest < ActiveSupport::TestCase
 
   test 'due' do
     review
+    topic_id = review.answer.topic.id
     start_time = Time.now
     Timecop.freeze start_time
     review.mark_correct!(start_time + 5.minutes)
-    assert_empty Review.due(review.owner),
+    assert_empty Review.due(review.owner, topic_id),
       'review shouldnt be due after marking it correct'
     Timecop.travel review.next_review
-    refute_empty Review.due(review.owner),
+    refute_empty Review.due(review.owner, topic_id),
       'review should show up on review list after it is due'
-    assert_equal review.id, Review.due(review.owner).first.id
+    assert_equal review.id, Review.due(review.owner, topic_id).first.id
     Timecop.return
   end
 

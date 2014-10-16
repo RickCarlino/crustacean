@@ -3,6 +3,7 @@
 class ChoiceFactory
   # Returns an array of strings representing possible Answer#data().
   def self.build(review)
+    # OPTIMIZE write some JOIN statements
     correct     = review.correct_answers
     distraction = review
                     .answers.where
