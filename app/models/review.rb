@@ -16,7 +16,7 @@ class Review < ActiveRecord::Base
     rev.last_review = Time.now
   end
 
-  def self.random_review_for(user, topic)
+  def self.random_for(user, topic)
     # TODO optimize. Don't feel like dealing with AR quirckiness right now
     ids  = Review.where(owner: user).pluck(:fact_id)
     fact = Fact.where(topic: topic)
@@ -25,6 +25,7 @@ class Review < ActiveRecord::Base
                .limit(1)
                .first
     fact.create_review_for(user)
+    return true
   end
 
   def self.due(owner, topic_id)
