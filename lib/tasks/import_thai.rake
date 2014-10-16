@@ -40,5 +40,6 @@ namespace :import do
       typ.map{|t| Answer.create(question: pt_spch, fact: word, data: t)}
       print '-'
     end
+    Review.random_review_for User.create, topic
   end
 end

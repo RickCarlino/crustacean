@@ -17,12 +17,14 @@ class Review < ActiveRecord::Base
   end
 
   def self.random_review_for(user, topic)
-    raise 'Do I still need this?'
     # TODO optimize. Don't feel like dealing with AR quirckiness right now
-    ids  = Review.joins(:fact)
-                 .where(owner: user, facts: {topics: topic}).pluck(:fact_id)
-    fact = Fact.where.not(id: ids).order('random()').limit(1).first
-    fact.populate_reviews(user)
+    ids  = Review.where(owner: user).pluck(:fact_id)
+    fact = Fact.where(topic: topic)
+               .where.not(id: ids)
+               .order('random()')
+               .limit(1)
+               .first
+    fact.create_review_for(user)
   end
 
   def self.due(owner, topic_id)
