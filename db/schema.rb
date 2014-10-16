@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140925043821) do
     t.integer  "question_id"
     t.integer  "answer_id"
     t.integer  "fact_id"
+    t.boolean  "last_quiz_result"
     t.datetime "next_review"
     t.datetime "last_review"
     t.datetime "created_at"
