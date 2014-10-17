@@ -11,7 +11,19 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def update # Propose a response
-    raise 'do this next.'
+  # Propose a response
+  def update
+    outcome = Reviews::Update.run(params, user: current_user, review: review)
+    if outcome.success?
+      render json: outcome.result
+    else
+      render json: outcome.errors.message, status: 422
+    end
+  end
+
+private
+
+  def review
+    @review ||= Review.find(params[:id])
   end
 end

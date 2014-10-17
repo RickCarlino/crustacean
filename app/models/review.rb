@@ -1,4 +1,5 @@
 require 'choice_factory'
+require 'review_scheduler'
 class Review < ActiveRecord::Base
   # TODO Default times for review fileds (last, next)
   belongs_to :question
@@ -46,7 +47,7 @@ class Review < ActiveRecord::Base
 
   # The `data` of the correct answer(s)
   def correct_answers
-    Answer.where(question: question, fact: fact).pluck(:data)
+    fact.answers.where(question: question).pluck(:data).sort
   end
 
   # Propose an array of strings as an answer to the review's question
@@ -59,6 +60,7 @@ class Review < ActiveRecord::Base
     schedule    = ReviewScheduler.calculate(self.last_review, time)
     self.last_review = time
     self.next_review = schedule
+    self.last_quiz_result = true
   end
 
   def mark_correct!(time = Time.now)
@@ -69,6 +71,7 @@ class Review < ActiveRecord::Base
   def mark_incorrect(time = Time.now)
     last_review = time
     next_review = time
+    self.last_quiz_result = false
   end
 
   def mark_incorrect!(time = Time.now)
