@@ -3,7 +3,7 @@ module Reviews
     required do
       model :review
       model :user
-      array :proposed, class: String
+      array :proposed, class: String, arrayize: true
     end
 
     def execute

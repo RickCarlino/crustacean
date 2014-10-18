@@ -1,7 +1,6 @@
 require 'simplecov'
 SimpleCov.start do
   add_filter "/test/"
-  add_filter "/config/"
 end
 
 ENV["RAILS_ENV"] ||= "test"
@@ -20,7 +19,11 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def topic
-    @topic ||= FactoryGirl.create(:korean_topic)
+    @topic ||= create(:korean_topic)
+  end
+
+  def user
+    @user ||= create(:user)
   end
 
   def create(*optns)
@@ -31,4 +34,7 @@ class ActiveSupport::TestCase
     FactoryGirl.build(*optns)
   end
 
+  def json
+     JSON.parse(response.body).deep_symbolize_keys
+  end
 end
