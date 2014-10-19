@@ -52,6 +52,7 @@ GEM
     multi_json (1.10.1)
     mutations (0.7.2)
       activesupport
+    pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -106,6 +107,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   mutations
+  pg
   pry
   rails
   simplecov
