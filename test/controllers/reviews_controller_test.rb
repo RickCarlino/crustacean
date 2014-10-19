@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ReviewsControllerTest < ActionController::TestCase
   def setup
+    Review.destroy_all
     Review.random_for(user, topic)
   end
 
@@ -13,6 +14,7 @@ class ReviewsControllerTest < ActionController::TestCase
   end
 
   test 'create a review for a topic' do
+    binding.pry
     before = Review.due(user, topic)
     post :create, topic_id: topic.id, user_id: user.id
     assert_response :success
