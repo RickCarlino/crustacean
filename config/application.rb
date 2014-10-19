@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module Srs
   class Application < Rails::Application
-    config.middleware.insert_before "ActionDispatch::Static", "Rack::Cors" do
+    config.middleware.insert_before "Rack::Lock", "Rack::Cors" do
       allow do
         origins '*'
         resource '*', headers: :any,
