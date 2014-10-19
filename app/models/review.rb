@@ -20,11 +20,8 @@ class Review < ActiveRecord::Base
   def self.random_for(user, topic)
     # TODO optimize. Don't feel like dealing with AR quirckiness right now
     ids  = Review.where(owner: user).pluck(:fact_id).uniq
-    fact = Fact.where(topic: topic)
-               .where.not(id: ids)
-               .order('random()')
-               .limit(1)
-               .first
+    fact = Fact.where(topic: topic).where.not(id: ids).order('random()').first
+    binding.pry unless fact
     return false unless fact
     fact.create_review_for(user)
     return true

@@ -33,6 +33,7 @@ FactoryGirl.define do
       Answer.create(data: 'pumpkin', question: 영어, fact: 호박)
       Answer.create(data: '명사',     question: 품사, fact: 호박)
       Answer.create(data: '호박.mp3', question: 발음, fact: 호박)
+
     end
   end
 end

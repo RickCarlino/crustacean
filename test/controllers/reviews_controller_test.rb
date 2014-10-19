@@ -14,7 +14,7 @@ class ReviewsControllerTest < ActionController::TestCase
   end
 
   test 'create a review for a topic' do
-    binding.pry
+    Review.destroy_all
     before = Review.due(user, topic)
     post :create, topic_id: topic.id, user_id: user.id
     assert_response :success

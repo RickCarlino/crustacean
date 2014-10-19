@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   def create
     # TODO write a mutation for this for when people give bad IDs, params etc.
     if Review.random_for(current_user, Topic.find(params[:topic_id]))
-      respond_with Review.due(current_user, params[:topic_id])
+      render json: Review.due(current_user, params[:topic_id]), status: :created
     else
       raise 'You got here because there were no facts left to review.'
     end
