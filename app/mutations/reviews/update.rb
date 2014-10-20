@@ -1,8 +1,8 @@
 module Reviews
   class Update < Mutations::Command
     required do
-      model :review
-      model :user
+      model :review, class: Review
+      model :user, class: User
       array :proposed, class: String, arrayize: true
     end
 

@@ -59,6 +59,7 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         null
@@ -107,36 +108,10 @@
         null,
         null
       ],
-      "/Users/rick/code/srs/app/controllers/topics_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/rick/code/srs/app/controllers/application_controller.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        7,
-        null,
-        1,
-        null,
-        null,
+      "/Users/rick/code/srs/app/models/user.rb": [
         null,
         null,
         1,
-        9,
-        null,
-        null,
-        1,
-        7,
-        null,
         null
       ],
       "/Users/rick/code/srs/app/models/question.rb": [
@@ -180,17 +155,6 @@
         54,
         null,
         null,
-        null
-      ],
-      "/Users/rick/code/srs/app/models/user.rb": [
-        null,
-        null,
-        1,
-        null
-      ],
-      "/Users/rick/code/srs/app/serializers/topic_serializer.rb": [
-        1,
-        1,
         null
       ],
       "/Users/rick/code/srs/app/models/review.rb": [
@@ -307,6 +271,31 @@
         null,
         null
       ],
+      "/Users/rick/code/srs/app/controllers/application_controller.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        8,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        10,
+        null,
+        null,
+        1,
+        8,
+        null,
+        null
+      ],
       "/Users/rick/code/srs/app/mutations/reviews/update.rb": [
         1,
         1,
@@ -363,9 +352,67 @@
         14,
         null,
         null
+      ],
+      "/Users/rick/code/srs/app/controllers/facts_controller.rb": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/rick/code/srs/app/mutations/facts/create.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/rick/code/srs/app/controllers/topics_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/rick/code/srs/app/serializers/topic_serializer.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/rick/code/srs/app/serializers/question_serializer.rb": [
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1413681187
+    "timestamp": 1413765436
   },
   "Unknown Test Framework": {
     "coverage": {
