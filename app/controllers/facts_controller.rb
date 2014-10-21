@@ -12,7 +12,7 @@ private
 
   def fact_params
     {user: current_user,
-     topic: Topic.find(params[:topic_id],
-     fact: params)}
+     topic: Topic.joins(:questions).find(params[:topic_id]),
+     answers: params[:answers]}
   end
 end
