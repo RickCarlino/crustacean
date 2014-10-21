@@ -14,26 +14,26 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-10-20T20:43:07-05:00">2014-10-20T20:43:07-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-10-20T20:57:08-05:00">2014-10-20T20:57:08-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">96.62%</span></span>
+    (<span class="covered_percent"><span class="green">96.7%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.52
+         3.11
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>24</b> files in total.
-    <b>207</b> relevant lines. 
-    <span class="green"><b>200</b> lines covered</span> and
+    <b>212</b> relevant lines. 
+    <span class="green"><b>205</b> lines covered</span> and
     <span class="red"><b>7</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -57,7 +57,7 @@
         <td>14</td>
         <td>14</td>
         <td>0</td>
-        <td>2.6</td>
+        <td>2.9</td>
       </tr>
       
       <tr>
@@ -67,7 +67,7 @@
         <td>9</td>
         <td>8</td>
         <td>1</td>
-        <td>0.9</td>
+        <td>1.1</td>
       </tr>
       
       <tr>
@@ -97,7 +97,7 @@
         <td>11</td>
         <td>11</td>
         <td>0</td>
-        <td>8.5</td>
+        <td>7.8</td>
       </tr>
       
       <tr>
@@ -122,12 +122,12 @@
       
       <tr>
         <td class="strong"><a href="#d2677dae219602a2029456b88d0c8e16fad81af1" class="src_link" title="app/models/review.rb">app/models/review.rb</a></td>
-        <td class="green strong">97.87 %</td>
-        <td>79</td>
-        <td>47</td>
+        <td class="green strong">97.83 %</td>
+        <td>78</td>
         <td>46</td>
+        <td>45</td>
         <td>1</td>
-        <td>6.0</td>
+        <td>4.8</td>
       </tr>
       
       <tr>
@@ -153,11 +153,11 @@
       <tr>
         <td class="strong"><a href="#ed024b71d618b5a4a9192d3bfc8173c4c9a9e1c6" class="src_link" title="app/mutations/facts/create.rb">app/mutations/facts/create.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>31</td>
-        <td>16</td>
-        <td>16</td>
+        <td>43</td>
+        <td>22</td>
+        <td>22</td>
         <td>0</td>
-        <td>1.4</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
@@ -277,7 +277,7 @@
         <td>5</td>
         <td>5</td>
         <td>0</td>
-        <td>10.6</td>
+        <td>8.8</td>
       </tr>
       
       <tr>
@@ -287,7 +287,7 @@
         <td>10</td>
         <td>10</td>
         <td>0</td>
-        <td>5.3</td>
+        <td>3.2</td>
       </tr>
       
     </tbody>
@@ -368,8 +368,8 @@
           <code class="ruby">  def authenticate_user!</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="9">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="9">
+          <span class="hits">9</span>
           
           <code class="ruby">    @current_user = User.find(params[:user_id])</code>
         </li>
@@ -416,8 +416,8 @@
           <code class="ruby">  def current_user</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="17">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="17">
+          <span class="hits">11</span>
           
           <code class="ruby">    @current_user ||= User.find(params[:user_id])</code>
         </li>
@@ -440,8 +440,8 @@
           <code class="ruby">  def set_default_response_format</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="21">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="21">
+          <span class="hits">9</span>
           
           <code class="ruby">    request.format = :json</code>
         </li>
@@ -488,8 +488,8 @@
           <code class="ruby">  def create</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="3">
+          <span class="hits">2</span>
           
           <code class="ruby">    outcome = Facts::Create.run(fact_params)</code>
         </li>
@@ -500,8 +500,8 @@
           <code class="ruby">    if outcome.success?</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="5">
-          
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
           
           <code class="ruby">      render json: outcome.result</code>
         </li>
@@ -512,8 +512,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="7">
+          
           
           <code class="ruby">      render json: outcome.errors.message, status: 422</code>
         </li>
@@ -566,8 +566,8 @@
           <code class="ruby">     topic: Topic.joins(:questions).find(params[:topic_id]),</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="16">
+          <span class="hits">2</span>
           
           <code class="ruby">     answers: params[:answers]}</code>
         </li>
@@ -998,14 +998,14 @@
           <code class="ruby">  def create_review_for(user, topic)</code>
         </li>
       
-        <li class="covered" data-hits="31" data-linenumber="15">
-          <span class="hits">31</span>
+        <li class="covered" data-hits="28" data-linenumber="15">
+          <span class="hits">28</span>
           
           <code class="ruby">    question.review_against.map do |ques|</code>
         </li>
       
-        <li class="covered" data-hits="54" data-linenumber="16">
-          <span class="hits">54</span>
+        <li class="covered" data-hits="49" data-linenumber="16">
+          <span class="hits">49</span>
           
           <code class="ruby">      Review.create(owner: user, question: ques, answer: self, fact: fact)</code>
         </li>
@@ -1179,10 +1179,10 @@
         <div class="source_table" id="d2677dae219602a2029456b88d0c8e16fad81af1">
   <div class="header">
     <h3>app/models/review.rb</h3>
-    <h4><span class="green">97.87 %</span> covered</h4>
+    <h4><span class="green">97.83 %</span> covered</h4>
     <div>
-      <b>47</b> relevant lines. 
-      <span class="green"><b>46</b> lines covered</span> and
+      <b>46</b> relevant lines. 
+      <span class="green"><b>45</b> lines covered</span> and
       <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
@@ -1280,14 +1280,14 @@
           <code class="ruby">  before_create do |rev|</code>
         </li>
       
-        <li class="covered" data-hits="58" data-linenumber="16">
-          <span class="hits">58</span>
+        <li class="covered" data-hits="49" data-linenumber="16">
+          <span class="hits">49</span>
           
           <code class="ruby">    rev.next_review = Time.now</code>
         </li>
       
-        <li class="covered" data-hits="58" data-linenumber="17">
-          <span class="hits">58</span>
+        <li class="covered" data-hits="49" data-linenumber="17">
+          <span class="hits">49</span>
           
           <code class="ruby">    rev.last_review = Time.now</code>
         </li>
@@ -1331,334 +1331,328 @@
         <li class="covered" data-hits="6" data-linenumber="24">
           <span class="hits">6</span>
           
-          <code class="ruby">    binding.pry unless fact</code>
+          <code class="ruby">    return false unless fact</code>
         </li>
       
         <li class="covered" data-hits="6" data-linenumber="25">
           <span class="hits">6</span>
           
-          <code class="ruby">    return false unless fact</code>
+          <code class="ruby">    fact.create_review_for(user)</code>
         </li>
       
         <li class="covered" data-hits="6" data-linenumber="26">
           <span class="hits">6</span>
           
-          <code class="ruby">    fact.create_review_for(user)</code>
+          <code class="ruby">    return true</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="27">
-          <span class="hits">6</span>
+        <li class="never" data-hits="" data-linenumber="27">
           
-          <code class="ruby">    return true</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="28">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="29">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="30">
+        <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
           <code class="ruby">  def self.due(owner, topic_id)</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="31">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="7" data-linenumber="30">
+          <span class="hits">7</span>
           
           <code class="ruby">    join  = &quot;JOIN answers ON reviews.answer_id = answers.id JOIN questions on &quot;\</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">            &quot;questions.id = answers.question_id JOIN topics ON questions.&quot;\</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="33">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">            &quot;topic_id = topics.id&quot;</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="34">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="7" data-linenumber="33">
+          <span class="hits">7</span>
           
           <code class="ruby">    query = &quot;owner_type = ? AND owner_id = ? AND topics.id = ? AND&quot;\</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="34">
           
           
           <code class="ruby">            &quot; next_review &lt; ?&quot;</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="36">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="7" data-linenumber="35">
+          <span class="hits">7</span>
           
           <code class="ruby">    terms = [query, owner.class, owner.id, topic_id, Time.now]</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="37">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="7" data-linenumber="36">
+          <span class="hits">7</span>
           
           <code class="ruby">    self.joins(join).where(*terms)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="38">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="40">
-          
-          
           <code class="ruby">  # A list of possible choices against which the student can choose</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="40">
           <span class="hits">1</span>
           
           <code class="ruby">  def choices</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="41">
           
           
           <code class="ruby">    # TODO Convert choices to a hypermedia URL to prevent N+1?</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="43">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="14" data-linenumber="42">
+          <span class="hits">14</span>
           
           <code class="ruby">    @choices ||= ChoiceFactory.build(self)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
-          
           <code class="ruby">  # The `data` of the correct answer(s)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="47">
+        <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
           <code class="ruby">  def correct_answers</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="48">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="21" data-linenumber="47">
+          <span class="hits">21</span>
           
           <code class="ruby">    fact.answers.where(question: question).pluck(:data).sort</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="49">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="51">
-          
-          
           <code class="ruby">  # Propose an array of strings as an answer to the review&#39;s question</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="52">
+        <li class="covered" data-hits="1" data-linenumber="51">
           <span class="hits">1</span>
           
           <code class="ruby">  def attempt(answer)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
+        <li class="missed" data-hits="0" data-linenumber="52">
           
           
           <code class="ruby">    answer.sort == correct_answers.sort</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
+          
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="56">
-          
-          
           <code class="ruby">  # TODO Test mark_correct, mark_incorrect and their bang(!) counterparts</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="57">
+        <li class="covered" data-hits="1" data-linenumber="56">
           <span class="hits">1</span>
           
           <code class="ruby">  def mark_correct(time = Time.now)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="58">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="57">
+          <span class="hits">1</span>
           
           <code class="ruby">    schedule    = ReviewScheduler.calculate(self.last_review, time)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="59">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
           
           <code class="ruby">    self.last_review = time</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="60">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
           
           <code class="ruby">    self.next_review = schedule</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="61">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="60">
+          <span class="hits">1</span>
           
           <code class="ruby">    self.last_quiz_result = true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="61">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="62">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="63">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="63">
           <span class="hits">1</span>
           
           <code class="ruby">  def mark_correct!(time = Time.now)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="65">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="64">
+          <span class="hits">1</span>
           
           <code class="ruby">    mark_correct(time)</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="66">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="1" data-linenumber="65">
+          <span class="hits">1</span>
           
           <code class="ruby">    save</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="66">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="68">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="69">
+        <li class="covered" data-hits="1" data-linenumber="68">
           <span class="hits">1</span>
           
           <code class="ruby">  def mark_incorrect(time = Time.now)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="70">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="69">
+          <span class="hits">1</span>
           
           <code class="ruby">    last_review = time</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="71">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="70">
+          <span class="hits">1</span>
           
           <code class="ruby">    next_review = time</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="72">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="71">
+          <span class="hits">1</span>
           
           <code class="ruby">    self.last_quiz_result = false</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="72">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="73">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="74">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="75">
+        <li class="covered" data-hits="1" data-linenumber="74">
           <span class="hits">1</span>
           
           <code class="ruby">  def mark_incorrect!(time = Time.now)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="76">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="75">
+          <span class="hits">1</span>
           
           <code class="ruby">    mark_incorrect</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="77">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="1" data-linenumber="76">
+          <span class="hits">1</span>
           
           <code class="ruby">    save!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="77">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="78">
           
           
           <code class="ruby">end</code>
@@ -1775,8 +1769,8 @@
     <h3>app/mutations/facts/create.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>16</b> relevant lines. 
-      <span class="green"><b>16</b> lines covered</span> and
+      <b>22</b> relevant lines. 
+      <span class="green"><b>22</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1850,88 +1844,88 @@
           <code class="ruby">    def execute</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="12">
+          <span class="hits">2</span>
           
           <code class="ruby">      validate_answers</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="13">
+        <li class="covered" data-hits="2" data-linenumber="13">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      create_fact</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="14">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
+        <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
-          <code class="ruby">    def validate_answers</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="16">
-          <span class="hits">3</span>
-          
-          <code class="ruby">      answers.each { |key, value| validate_answer(key, value) }</code>
+          <code class="ruby">private</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
-          <code class="ruby">    def validate_answer(key, value)</code>
+          <code class="ruby">    def create_fact</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="19">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      ActiveRecord::Base.transaction do</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="20">
           <span class="hits">2</span>
           
-          <code class="ruby">      unless question_names.include?(key)</code>
+          <code class="ruby">        @fact = Fact.new</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="21">
           <span class="hits">2</span>
           
-          <code class="ruby">        add_error :answers,</code>
+          <code class="ruby">        binding.pry</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="22">
           
           
-          <code class="ruby">          :invalid_question,</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">          &quot;#{key} is not a valid question name. Try these: #{question_names}&quot;</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">#====</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
@@ -1943,13 +1937,13 @@
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">    def question_names</code>
+          <code class="ruby">    def validate_answers</code>
         </li>
       
-        <li class="covered" data-hits="4" data-linenumber="28">
-          <span class="hits">4</span>
+        <li class="covered" data-hits="8" data-linenumber="28">
+          <span class="hits">8</span>
           
-          <code class="ruby">      topic.questions.pluck(:name)</code>
+          <code class="ruby">      answers.each { |key, value| validate_answer(key, value) }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="29">
@@ -1961,10 +1955,82 @@
         <li class="never" data-hits="" data-linenumber="30">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def validate_answer(key, value)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="32">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      unless question_names.include?(key)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="33">
+          <span class="hits">2</span>
+          
+          <code class="ruby">        add_error :answers,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="34">
+          
+          
+          <code class="ruby">          :invalid_question,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby">          &quot;#{key} is not a valid question name. Try these: #{question_names}&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="36">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="38">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="39">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def question_names</code>
+        </li>
+      
+        <li class="covered" data-hits="8" data-linenumber="40">
+          <span class="hits">8</span>
+          
+          <code class="ruby">      topic.questions.pluck(:name)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">end</code>
@@ -2822,14 +2888,14 @@
           <code class="ruby">    # OPTIMIZE write some JOIN statements</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="7">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="14" data-linenumber="7">
+          <span class="hits">14</span>
           
           <code class="ruby">    correct     = review.correct_answers</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="8">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="14" data-linenumber="8">
+          <span class="hits">14</span>
           
           <code class="ruby">    distraction = review</code>
         </li>
@@ -2864,8 +2930,8 @@
           <code class="ruby">                    .pluck(:data)</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="14">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="14" data-linenumber="14">
+          <span class="hits">14</span>
           
           <code class="ruby">    (correct + distraction).shuffle.uniq</code>
         </li>
@@ -2936,8 +3002,8 @@
           <code class="ruby">  def self.intervals</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="7">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="7">
+          <span class="hits">3</span>
           
           <code class="ruby">    [ 5, 25, 120, 600, 3600, 18000, 86400,</code>
         </li>
@@ -2990,20 +3056,20 @@
           <code class="ruby">  def self.calculate(previous, current = Time.now)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="16">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="16">
+          <span class="hits">3</span>
           
           <code class="ruby">    previous = previous.to_time</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="17">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="17">
+          <span class="hits">3</span>
           
           <code class="ruby">    current  = current.to_time</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="18">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="18">
+          <span class="hits">3</span>
           
           <code class="ruby">    raise &#39;bad review times&#39; unless current &gt; previous # TODO Custom exception</code>
         </li>
@@ -3014,20 +3080,20 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="20">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="20">
+          <span class="hits">3</span>
           
           <code class="ruby">    difference = (current - previous).to_i # Seconds</code>
         </li>
       
-        <li class="covered" data-hits="20" data-linenumber="21">
-          <span class="hits">20</span>
+        <li class="covered" data-hits="11" data-linenumber="21">
+          <span class="hits">11</span>
           
           <code class="ruby">    next_interval = self.intervals.find{ |num| num &gt; difference }</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="22">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="3" data-linenumber="22">
+          <span class="hits">3</span>
           
           <code class="ruby">    current + next_interval.seconds</code>
         </li>

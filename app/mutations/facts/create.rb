@@ -10,9 +10,19 @@ module Facts
 
     def execute
       validate_answers
+      create_fact
     end
 
 private
+
+    def create_fact
+      ActiveRecord::Base.transaction do
+        @fact = Fact.new
+        binding.pry
+      end
+    end
+
+#====
 
     def validate_answers
       answers.each { |key, value| validate_answer(key, value) }
