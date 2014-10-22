@@ -17,8 +17,15 @@ private
 
     def create_fact
       ActiveRecord::Base.transaction do
-        @fact = Fact.new
-        binding.pry
+        @fact = Fact.create(topic: topic)
+        answers.each { |key, val| create_answer(key, val) }
+      end
+    end
+
+    def create_answer(key, value)
+      question = topic.questions.find_by(name: key)
+      value.each do |data|
+        Answer.create(question: question, fact: @fact, data: data)
       end
     end
 
