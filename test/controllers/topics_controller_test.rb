@@ -13,4 +13,13 @@ class TopicsControllerTest < ActionController::TestCase
     get :index, id: topic.id, user_id: 39393939393
     assert_equal 401, response.status
   end
+
+  test 'create topic' do
+    before = Topic.count
+    post :create, name: 'chickens', user_id: user.id
+    after = Topic.count
+    assert_response :success
+    assert_equal 'chickens', json[:topic][:name]
+    assert before < after
+  end
 end

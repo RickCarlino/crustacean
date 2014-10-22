@@ -47,10 +47,10 @@ class Review < ActiveRecord::Base
     fact.answers.where(question: question).pluck(:data).sort
   end
 
-  # Propose an array of strings as an answer to the review's question
-  def attempt(answer)
-    answer.sort == correct_answers.sort
-  end
+  # # Propose an array of strings as an answer to the review's question
+  # def attempt(answer)
+  #   answer.sort == correct_answers.sort
+  # end
 
   # TODO Test mark_correct, mark_incorrect and their bang(!) counterparts
   def mark_correct(time = Time.now)

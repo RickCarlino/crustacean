@@ -9,7 +9,8 @@ class ReviewsController < ApplicationController
     if Review.random_for(current_user, Topic.find(params[:topic_id]))
       render json: Review.due(current_user, params[:topic_id]), status: :created
     else
-      raise 'You got here because there were no facts left to review.'
+      raise  ActiveRecord::RecordNotFound,
+        'You got here because there were no facts left to review.'
     end
   end
 

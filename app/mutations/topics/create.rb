@@ -7,4 +7,5 @@ module Topics
     def execute
       Topic.create(name: name)
     end
+  end
 end
