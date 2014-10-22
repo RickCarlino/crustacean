@@ -14,9 +14,7 @@ private
   end
 
   def four_oh_four(exception)
-    msg = "Not found. #{exception.message}"
-    error = {error: msg}
-    render json: error, status: 404 and return
+    render json: {error: "Not found. #{exception.message}"}, status: 404
   end
 
   # Totally insecure "authentication" scheme.
