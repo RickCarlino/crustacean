@@ -5,7 +5,17 @@ class ApplicationController < ActionController::Base
   before_action :set_default_response_format
   before_action :authenticate_user!
   rescue_from ActiveRecord::RecordNotFound, with: :four_oh_four
+
 private
+
+  def mutate(outcome)
+    if outcome.success?
+      render json: outcome.result
+    else
+      render json: outcome.errors.message, status: 422
+    end
+  end
+
   def authenticate_user!
     @current_user = User.find(params[:user_id])
   rescue ActiveRecord::RecordNotFound

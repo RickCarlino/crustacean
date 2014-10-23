@@ -4,12 +4,6 @@ class TopicsController < ApplicationController
   end
 
   def create
-    outcome = Topics::Create.run(params)
-    # TODO DRY this code up into a mutate() method or sth.
-    if outcome.success?
-      render json: outcome.result
-    else
-      render json: outcome.errors.message, status: 422
-    end
+    mutate Topics::Create.run(params)
   end
 end

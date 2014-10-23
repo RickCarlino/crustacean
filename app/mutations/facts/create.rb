@@ -8,8 +8,11 @@ module Facts
       end
     end
 
-    def execute
+    def validate
       validate_answers
+    end
+
+    def execute
       create_fact
     end
 
@@ -29,22 +32,18 @@ private
       end
     end
 
-#====
-
     def validate_answers
-      answers.each { |key, value| validate_answer(key, value) }
-    end
-
-    def validate_answer(key, value)
-      unless question_names.include?(key)
-        add_error :answers,
-          :invalid_question,
-          "#{key} is not a valid question name. Try these: #{question_names}"
+      answers.each do |key, value|
+        unless question_names.include?(key)
+          add_error :answers,
+            :invalid_question,
+            "#{key} is not a valid question name. Try these: #{question_names}"
+        end
       end
     end
 
     def question_names
-      topic.questions.pluck(:name)
+      @question_names ||= topic.questions.pluck(:name)
     end
   end
 end

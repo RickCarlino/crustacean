@@ -1,11 +1,6 @@
 class FactsController < ApplicationController
   def create
-    outcome = Facts::Create.run(fact_params)
-    if outcome.success?
-      render json: outcome.result
-    else
-      render json: outcome.errors.message, status: 422
-    end
+    mutate Facts::Create.run(fact_params)
   end
 
 private

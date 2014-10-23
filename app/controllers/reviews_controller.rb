@@ -16,12 +16,7 @@ class ReviewsController < ApplicationController
 
   # Propose a response
   def update
-    outcome = Reviews::Update.run(params, user: current_user, review: review)
-    if outcome.success?
-      render json: outcome.result
-    else
-      render json: outcome.errors.message, status: 422
-    end
+    mutate Reviews::Update.run(params, user: current_user, review: review)
   end
 
 private
