@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20141027012556) do
   create_table "questions", force: true do |t|
     t.integer  "topic_id"
     t.string   "name"
-    t.string   "review_against"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

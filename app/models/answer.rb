@@ -12,7 +12,7 @@ class Answer < ActiveRecord::Base
   delegate :questions, to: :topic
 
   def create_review_for(user, topic)
-    question.review_against.map do |ques|
+    question.counter_questions.map do |ques|
       Review.create(owner: user, question: ques, answer: self, fact: fact)
     end
   end

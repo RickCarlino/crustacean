@@ -36,5 +36,8 @@ class ActiveSupport::TestCase
 
   def json
      JSON.parse(response.body).deep_symbolize_keys
+  rescue
+    raise 'Tried to parse JSON that was invalid. This is most likely caused by'\
+      ' a broken controller response.'
   end
 end

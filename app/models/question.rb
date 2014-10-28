@@ -7,5 +7,4 @@ class Question < ActiveRecord::Base
   has_many   :reviews, dependent: :destroy
   has_many   :counter_questions, through: :review_schemes, class_name: 'Question'
   has_many   :review_schemes
-  serialize  :review_against, Array
   end

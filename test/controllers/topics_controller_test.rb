@@ -22,14 +22,15 @@ class TopicsControllerTest < ActionController::TestCase
                            type:  [],
                            color:  [:breed, :breed, :breed]}}
     post :create, params
+    binding.pry
     after = Topic.count
     assert_response :success
     assert_equal 'chickens', json[:topic][:name]
     assert before < after
   end
 
-  test 'bad counterquestion selection' do
-    raise '
-    Try to break Topics::Create. Probably needs to be a mutation unit test, though.'
-  end
+  # test 'bad counterquestion selection' do
+  #   raise '
+  #   Try to break Topics::Create. Probably needs to be a mutation unit test, though.'
+  # end
 end

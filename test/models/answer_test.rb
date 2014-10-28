@@ -8,15 +8,15 @@ class AnswerTest < ActiveSupport::TestCase
     old_count = Review.count
     result = ans.create_review_for(user, @topic)
     # There should be 2 new reviews if the question reviews against 2 other q's
-    new_count = ans.question.review_against.count + old_count
+    new_count = ans.question.counter_questions.count + old_count
     assert_equal new_count, Review.count,
-      'didnt make reviews for each of the review_against questions'
+      'didnt make reviews for each of the counter_questions questions'
     question_names = result.map{ |r| r.question.name }.sort
     review_answers = result.map{ |r| r.answer.id }.uniq
     assert_equal [ans.id], review_answers,
       'expected the reviews created to reference one answer'
     assert_equal ["영어", "품사"], question_names,
-      'expected review to reference review_against fields'
+      'expected review to reference counter_questions fields'
   end
 
   def test_create_review_for_nil
@@ -27,7 +27,7 @@ class AnswerTest < ActiveSupport::TestCase
     ans.create_review_for(user, @topic)
     # This question should not create any new reviews.
     assert_equal old_count, Review.count,
-      'expected no new reviews to be created since review_against == []'
+      'expected no new reviews to be created since counter_questions == []'
   end
 
 end
