@@ -22,7 +22,6 @@ class TopicsControllerTest < ActionController::TestCase
                            type:  [],
                            color:  [:breed, :breed, :breed]}}
     post :create, params
-    binding.pry
     after = Topic.count
     assert_response :success
     assert_equal 'chickens', json[:topic][:name]
