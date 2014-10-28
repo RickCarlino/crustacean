@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925043821) do
+ActiveRecord::Schema.define(version: 20141027012556) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(version: 20140925043821) do
     t.string   "review_against"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "review_schemes", force: true do |t|
+    t.integer "question_id"
+    t.integer "counter_question_id"
   end
 
   create_table "reviews", force: true do |t|
