@@ -14,4 +14,11 @@ class FactsControllerTest < ActionController::TestCase
     post :create, topic_id: topic.id, user_id: user.id, answers: ans
     assert_response :success
   end
+
+  test 'bad facts' do
+    ans = {korean: '명사', 영어: 'a noun', 품사: 'N', 발음: '명사.wav'}
+    post :create, topic_id: topic.id, user_id: user.id, answers: ans
+    binding.pry
+    refute_response :success
+  end
 end
