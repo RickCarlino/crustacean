@@ -18,7 +18,7 @@ class FactsControllerTest < ActionController::TestCase
   test 'bad facts' do
     ans = {korean: '명사', 영어: 'a noun', 품사: 'N', 발음: '명사.wav'}
     post :create, topic_id: topic.id, user_id: user.id, answers: ans
-    binding.pry
-    refute_response :success
+    assert_includes json[:answers],  "korean is not a valid question name"
+    assert_response 422
   end
 end

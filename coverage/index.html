@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-10-28T21:04:43-05:00">2014-10-28T21:04:43-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-10-28T21:14:14-05:00">2014-10-28T21:14:14-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.36
+         3.43
        </span>
     </span> hits/line)
   </h2>
@@ -57,7 +57,7 @@
         <td>21</td>
         <td>20</td>
         <td>1</td>
-        <td>2.8</td>
+        <td>3.0</td>
       </tr>
       
       <tr>
@@ -67,7 +67,7 @@
         <td>6</td>
         <td>6</td>
         <td>0</td>
-        <td>1.3</td>
+        <td>1.7</td>
       </tr>
       
       <tr>
@@ -167,7 +167,7 @@
         <td>26</td>
         <td>26</td>
         <td>0</td>
-        <td>2.1</td>
+        <td>2.5</td>
       </tr>
       
       <tr>
@@ -406,8 +406,8 @@
           <code class="ruby">  def mutate(outcome)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="12">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="12">
+          <span class="hits">7</span>
           
           <code class="ruby">    if outcome.success?</code>
         </li>
@@ -424,8 +424,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="15">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="15">
+          <span class="hits">3</span>
           
           <code class="ruby">      render json: outcome.errors.message, status: 422</code>
         </li>
@@ -454,8 +454,8 @@
           <code class="ruby">  def authenticate_user!</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="20">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="20">
+          <span class="hits">11</span>
           
           <code class="ruby">    @current_user = User.find(params[:user_id])</code>
         </li>
@@ -526,8 +526,8 @@
           <code class="ruby">  def current_user</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="32">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="13" data-linenumber="32">
+          <span class="hits">13</span>
           
           <code class="ruby">    @current_user ||= User.find(params[:user_id])</code>
         </li>
@@ -550,8 +550,8 @@
           <code class="ruby">  def set_default_response_format</code>
         </li>
       
-        <li class="covered" data-hits="10" data-linenumber="36">
-          <span class="hits">10</span>
+        <li class="covered" data-hits="11" data-linenumber="36">
+          <span class="hits">11</span>
           
           <code class="ruby">    request.format = :json</code>
         </li>
@@ -598,8 +598,8 @@
           <code class="ruby">  def create</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="3">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="3">
+          <span class="hits">3</span>
           
           <code class="ruby">    mutate Facts::Create.run(fact_params)</code>
         </li>
@@ -646,8 +646,8 @@
           <code class="ruby">     topic: Topic.joins(:questions).find(params[:topic_id]),</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="11">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="11">
+          <span class="hits">3</span>
           
           <code class="ruby">     answers: params[:answers]}</code>
         </li>
@@ -1888,8 +1888,8 @@
           <code class="ruby">    def validate</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="12">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="12">
+          <span class="hits">3</span>
           
           <code class="ruby">      validate_answers</code>
         </li>
@@ -2032,20 +2032,20 @@
           <code class="ruby">    def validate_answers</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="36">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="36">
+          <span class="hits">3</span>
           
           <code class="ruby">      answers.each do |key, value|</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="37">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="10" data-linenumber="37">
+          <span class="hits">10</span>
           
           <code class="ruby">        unless question_names.include?(key)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="38">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="38">
+          <span class="hits">3</span>
           
           <code class="ruby">          add_error :answers,</code>
         </li>
@@ -2092,8 +2092,8 @@
           <code class="ruby">    def question_names</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="46">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="13" data-linenumber="46">
+          <span class="hits">13</span>
           
           <code class="ruby">      @question_names ||= topic.questions.pluck(:name)</code>
         </li>
