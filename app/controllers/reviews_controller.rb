@@ -9,19 +9,14 @@ class ReviewsController < ApplicationController
     if Review.random_for(current_user, Topic.find(params[:topic_id]))
       render json: Review.due(current_user, params[:topic_id]), status: :created
     else
-      raise  ActiveRecord::RecordNotFound,
+      raise ActiveRecord::RecordNotFound,
         'You got here because there were no facts left to review.'
     end
   end
 
   # Propose a response
   def update
-    mutate Reviews::Update.run(params, user: current_user, review: review)
-  end
-
-private
-
-  def review
-    @review ||= Review.find(params[:id])
+    mutate Reviews::Update.run(params, user: current_user,
+                                       review: Review.find(params[:id]))
   end
 end

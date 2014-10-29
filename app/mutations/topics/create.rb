@@ -14,13 +14,14 @@ module Topics
     end
 
     def execute
-      # TODO wrap this in a transaction. Seriously.
-      @topic = Topic.create
-      topic.name = name
-      question_map.map do |ques, counter|
-        ques.counter_questions += counter
+      ActiveRecord::Base.transaction do
+        @topic = Topic.create
+        topic.name = name
+        question_map.map do |ques, counter|
+          ques.counter_questions += counter
+        end
+        topic
       end
-      topic
     end
 
 private
@@ -39,7 +40,8 @@ private
   end
 
   # Takes a Hash<String:String[]> and turns it into a Hash<Question:Question[]>
-  # Used as an intermediate step for linking questions to a group of counter questions.
+  # Used as an intermediate step for linking questions to a group of counter
+  # questions.
   def question_map
     # TODO get fancy with inject or sth.
     question_map = {}
