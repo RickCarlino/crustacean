@@ -4,6 +4,7 @@
 Crustacean is a memory management tool for humans. [Wait, what?](http://en.wikipedia.org/wiki/Spaced_repetition)
 
 ## Data Model
+
 ![Schema Diagram](https://raw.githubusercontent.com/rickcarlino/crustacean/master/schema.png)
 
 ## Roadmap
