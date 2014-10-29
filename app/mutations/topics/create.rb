@@ -10,19 +10,33 @@ module Topics
     end
 
     def validate
+      validate_counter_questions
     end
 
     def execute
       # TODO wrap this in a transaction. Seriously.
       @topic = Topic.create
+      topic.name = name
       question_map.map do |ques, counter|
-        binding.pry
-        ques.counter_questions = counter
+        ques.counter_questions += counter
       end
-      @topic
+      topic
     end
 
 private
+
+  def validate_counter_questions
+    questions.map do |key, value|
+      value.each{|name| validate_counter_question(name)}
+    end
+  end
+
+  def validate_counter_question(name)
+    unless questions.keys.include?(name)
+      add_error :questions, :counter_q, "Unexpected value #{name}. Was "\
+        "expecting one of the following: #{questions.keys.join(',')}."  
+    end
+  end
 
   # Takes a Hash<String:String[]> and turns it into a Hash<Question:Question[]>
   # Used as an intermediate step for linking questions to a group of counter questions.

@@ -25,11 +25,9 @@ class TopicsControllerTest < ActionController::TestCase
     after = Topic.count
     assert_response :success
     assert_equal 'chickens', json[:topic][:name]
+    expected_questions = ["breed", "chickens", "color", "type"]
+    actual_questions   = json[:topic][:questions].map{|d| d[:name]}.sort
+    assert_equal expected_questions, actual_questions
     assert before < after
   end
-
-  # test 'bad counterquestion selection' do
-  #   raise '
-  #   Try to break Topics::Create. Probably needs to be a mutation unit test, though.'
-  # end
 end
