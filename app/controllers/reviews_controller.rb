@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    respond_with Review.due(current_user, params[:topic_id]) || []
+    respond_with Review.due(current_user, params[:topic_id]) || {reviews: []}
   end
 
   # Make a new review
