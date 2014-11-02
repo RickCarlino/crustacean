@@ -6,9 +6,15 @@
   <script type="text/javascript" src="js/browser.js"></script>
 </head>
 <body ng-app='crustacean'>
-<div ng-controller='mainController as ctrl'>
-<h1> {{ ctrl.world }} </h1>
-</div>
-
+  <div ng-controller='mainController as ctrl'>
+    <h1>
+      Topics
+      <button ng-click="ctrl.getTopics()">Refresh</button>
+      <button ng-click="ctrl.createTopic()">New Topic</button>
+    </h1>
+    <ul ng-repeat="topic in ctrl.topics.all">
+      <li>{{ topic.name }}: {{ topic.questions.length }} questions</li>
+    </ul>
+  </div>
 </body>
 </html>
