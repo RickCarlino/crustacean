@@ -15,4 +15,4 @@
 /log/*.log
 /tmp
 /coverage/*
-/node_modules/*
+browser/node_modules/*
