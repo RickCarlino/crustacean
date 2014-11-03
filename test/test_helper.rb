@@ -8,15 +8,13 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+DocYoSelf.config do |c|
+  c.template_file = 'test/template.md.erb'
+  c.output_file   = 'api_docs.md'
+end
+
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
-
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-
-  # Add more helper methods to be used by all tests here...
 
   def topic
     @topic ||= create(:korean_topic)
@@ -41,3 +39,16 @@ class ActiveSupport::TestCase
       ' a broken controller response.'
   end
 end
+
+class ActionController::TestCase
+  def teardown
+    DocYoSelf.run!(request, response) if ENV['DOCS'].present?
+    super
+  end
+
+  def note(msg)
+    DocYoSelf.note(msg.squish)
+  end
+end
+
+MiniTest::Unit.after_tests { DocYoSelf.finish! } if ENV['DOCS'].present?

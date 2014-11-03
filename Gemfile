@@ -17,4 +17,5 @@ group :development, :test do
   gem 'simplecov'
   gem 'faker'
   gem 'sqlite3'
+  gem 'doc_yo_self'
 end

@@ -7,7 +7,8 @@ var gulp = require('gulp'),
 
 var paths = {
   js: 'js/**/*.js',
-  coffee: 'coffee/**/*.coffee'
+  coffee: 'coffee/**/*.coffee',
+  target: '../public'
 };
 
 // Coffee
@@ -19,6 +20,17 @@ gulp.task('coffee', function() {
     .pipe(plugin.concat('browser.js'))
     .pipe(gulp.dest('js/'))
     .pipe(plugin.connect.reload());
+});
+
+// Copy into public
+// =======================================================
+gulp.task('publish', function(){
+  gulp.src(['!node_modules/',
+            '!node_modules/**',
+            'js/**/*.js',
+            './**/*.html',
+            './**/*.css'], {base: "."})
+    .pipe(gulp.dest('../public'))
 });
 
 // Server
@@ -43,4 +55,4 @@ gulp.task('watch', ['compile'], function() {
 // =======================================================
 
 gulp.task('default', ['watch', 'connect']);
-gulp.task('compile', ['coffee'])
+gulp.task('compile', ['coffee', 'publish'])

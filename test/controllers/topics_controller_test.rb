@@ -15,18 +15,25 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test 'create topic' do
+    note """This is an example of a creating a topic. Questions are created by
+    providing a set of key value pairs that correspond to the question names and
+    the questions that it will be quized against. You must explicitly state
+    which questions you want a question to quiz against because it does not
+    always make sense to quiz against all questions. In this example, we are
+    creating a topic called 'chickens' and will review the 'breed' question
+    against the 'color' and 'type' questions. """
     before = Topic.count
     params =  {name: 'chickens',
                user_id: user.id,
                questions: {breed: [:color, :type],
                            type:  [],
-                           color:  [:breed, :breed, :breed]}}
+                           color:  [:breed]}}
     post :create, params
     after = Topic.count
     assert_response :success
     assert_equal 'chickens', json[:topic][:name]
     expected_questions = ["breed", "chickens", "color", "type"]
-    actual_questions   = json[:topic][:questions].map{|d| d[:name]}.sort
+    actual_questions   = json[:topic][:questions].sort
     assert_equal expected_questions, actual_questions
     assert before < after
   end

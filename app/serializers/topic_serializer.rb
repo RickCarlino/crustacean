@@ -1,4 +1,6 @@
 class TopicSerializer < ActiveModel::Serializer
-  attributes :id, :name
-  has_many :questions
+  attributes :id, :name, :questions
+  def questions
+    object.questions.pluck(:name)
+  end
 end
