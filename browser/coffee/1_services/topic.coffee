@@ -11,7 +11,14 @@ class TopicService
       "#{@settings.url}/topics"
 
   create: (params) ->
-    debugger
+    good = (data, status, headers, config) =>
+      @fetch()
+    bad  = (data, status, headers, config) =>
+      alert data.error
+    @$http
+    .post(@topicPath(), params)
+    .success(good)
+    .error(bad)
 
   fetch: ->
     good = (data, status, headers, config) =>

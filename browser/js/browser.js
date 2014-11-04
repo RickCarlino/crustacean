@@ -44,7 +44,18 @@
     };
 
     TopicService.prototype.create = function(params) {
-      debugger;
+      var bad, good;
+      good = (function(_this) {
+        return function(data, status, headers, config) {
+          return _this.fetch();
+        };
+      })(this);
+      bad = (function(_this) {
+        return function(data, status, headers, config) {
+          return alert(data.error);
+        };
+      })(this);
+      return this.$http.post(this.topicPath(), params).success(good).error(bad);
     };
 
     TopicService.prototype.fetch = function() {
@@ -97,5 +108,28 @@
   })();
 
   angular.module('crustacean').controller("mainController", ['$scope', '$http', 'TopicService', MainController]);
+
+}).call(this);
+
+(function() {
+  var NewTopicController;
+
+  NewTopicController = (function() {
+    function NewTopicController($scope, $http, topics) {
+      this.$scope = $scope;
+      this.$http = $http;
+      this.topics = topics;
+      this.topic = {
+        name: null,
+        user_id: settings.user_id,
+        questions: {}
+      };
+    }
+
+    return NewTopicController;
+
+  })();
+
+  angular.module("crustacean").controller("newTopicController", ["$scope", "$http", "TopicService", NewTopicController]);
 
 }).call(this);
