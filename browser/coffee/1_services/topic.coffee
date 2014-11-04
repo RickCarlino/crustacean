@@ -10,9 +10,9 @@ class TopicService
     else
       "#{@settings.url}/topics"
 
-  create: (params) ->
+  create: (params, cb) ->
     good = (data, status, headers, config) =>
-      @fetch()
+      cb()
     bad  = (data, status, headers, config) =>
       alert data.error
     @$http

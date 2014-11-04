@@ -6,15 +6,26 @@
   <script type="text/javascript" src="js/browser.js"></script>
 </head>
 <body ng-app='crustacean'>
-  <div ng-controller='mainController as ctrl'>
+  <div ng-controller='newTopicController as ctrl'>
     <h1>
-      Topics
-      <button ng-click="ctrl.getTopics()">Refresh</button>
-      <button ng-click="ctrl.createTopic()">New Topic</button>
+      {{ctrl.topic.name}}
+      <button ng-click="ctrl.setTitle()">Edit Name</button>
+      <button ng-click="ctrl.create()">Save</button>
     </h1>
-    <ul ng-repeat="topic in ctrl.topics.all">
-      <li>{{ topic.name }}</li>
-    </ul>
+    <h2>
+      Questions
+      <button ng-click='alert(1)'>Add New Question</button>
+    </h2>
+    <table style="width:100%">
+    <tr>
+    <td>Question</td>
+    <td>Reviewed Against</td>
+    </tr>
+    <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    </tr>
+    </table>
   </div>
 </body>
 </html>
