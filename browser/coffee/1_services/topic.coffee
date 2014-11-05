@@ -1,6 +1,5 @@
 class TopicService
   constructor: (@$http, @settings) ->
-    console.log 'Topic'
 
   all: []
 
@@ -11,24 +10,18 @@ class TopicService
       "#{@settings.url}/topics"
 
   create: (params, cb) ->
-    good = (data, status, headers, config) =>
-      cb()
-    bad  = (data, status, headers, config) =>
-      alert data.error
+    params.params = {}
+    params.params.user_id = @settings.userId
     @$http
     .post(@topicPath(), params)
-    .success(good)
-    .error(bad)
+    .success((data) => cb())
+    .error((data) => alert data.error)
 
   fetch: ->
-    good = (data, status, headers, config) =>
-      @all = data.topics
-    bad  = (data, status, headers, config) =>
-      alert data.error
     @$http
     .get(@topicPath(), {params: {user_id: @settings.userId}})
-    .success(good)
-    .error(bad)
+    .success((data) => @all = data.topics)
+    .error((data) => alert data.error)
 
 angular.module('crustacean')
 .service 'TopicService', ['$http', 'Settings', TopicService]

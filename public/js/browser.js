@@ -43,11 +43,11 @@
       }
     };
 
-    TopicService.prototype.create = function(params) {
+    TopicService.prototype.create = function(params, cb) {
       var bad, good;
       good = (function(_this) {
         return function(data, status, headers, config) {
-          return _this.fetch();
+          return cb();
         };
       })(this);
       bad = (function(_this) {
@@ -115,21 +115,37 @@
   var NewTopicController;
 
   NewTopicController = (function() {
-    function NewTopicController($scope, $http, topics) {
+    function NewTopicController($scope, $http, topics, settings) {
       this.$scope = $scope;
       this.$http = $http;
       this.topics = topics;
+      this.settings = settings;
       this.topic = {
-        name: null,
-        user_id: settings.user_id,
+        name: 'Untitled Topic',
+        user_id: settings.userId,
         questions: {}
       };
     }
+
+    NewTopicController.prototype.create = function() {
+      return this.topics.create(this.topic);
+    };
+
+    NewTopicController.prototype.setQuestion = function(name, against) {
+      if (against == null) {
+        against = [];
+      }
+      return this.topic.questions[name] = against;
+    };
+
+    NewTopicController.prototype.setTitle = function() {
+      return this.topic.name = prompt('Enter New Name');
+    };
 
     return NewTopicController;
 
   })();
 
-  angular.module("crustacean").controller("newTopicController", ["$scope", "$http", "TopicService", NewTopicController]);
+  angular.module("crustacean").controller("newTopicController", ["$scope", "$http", "TopicService", "Settings", NewTopicController]);
 
 }).call(this);

@@ -10,18 +10,20 @@
     <h1>
       {{ctrl.topic.name}}
       <button ng-click="ctrl.setTitle()">Edit Name</button>
+      <button ng-click="ctrl.create()">Save</button>
     </h1>
-    <h2>Questions</h2>
-    <table style="width:100%">
+    <h2>
+      Questions
+      <button ng-click="ctrl.setQuestion()">Add New Question</button>
+    </h2>
+    <table style="width:100%" ng-repeat="(q, cq) in ctrl.topic.questions">
+    <!-- <tr>
+    <td>Question</td>
+    <td>Reviewed Against</td>
+    </tr> -->
     <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-    </tr>
-    <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
+    <td>{{ q }}</td>
+    <td>{{ cq }}</td>
     </tr>
     </table>
   </div>

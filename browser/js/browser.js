@@ -30,7 +30,6 @@
     function TopicService($http, settings) {
       this.$http = $http;
       this.settings = settings;
-      console.log('Topic');
     }
 
     TopicService.prototype.all = [];
@@ -44,37 +43,33 @@
     };
 
     TopicService.prototype.create = function(params, cb) {
-      var bad, good;
-      good = (function(_this) {
-        return function(data, status, headers, config) {
+      params.params = {};
+      params.params.user_id = this.settings.userId;
+      return this.$http.post(this.topicPath(), params).success((function(_this) {
+        return function(data) {
           return cb();
         };
-      })(this);
-      bad = (function(_this) {
-        return function(data, status, headers, config) {
+      })(this)).error((function(_this) {
+        return function(data) {
           return alert(data.error);
         };
-      })(this);
-      return this.$http.post(this.topicPath(), params).success(good).error(bad);
+      })(this));
     };
 
     TopicService.prototype.fetch = function() {
-      var bad, good;
-      good = (function(_this) {
-        return function(data, status, headers, config) {
-          return _this.all = data.topics;
-        };
-      })(this);
-      bad = (function(_this) {
-        return function(data, status, headers, config) {
-          return alert(data.error);
-        };
-      })(this);
       return this.$http.get(this.topicPath(), {
         params: {
           user_id: this.settings.userId
         }
-      }).success(good).error(bad);
+      }).success((function(_this) {
+        return function(data) {
+          return _this.all = data.topics;
+        };
+      })(this)).error((function(_this) {
+        return function(data) {
+          return alert(data.error);
+        };
+      })(this));
     };
 
     return TopicService;
@@ -131,11 +126,10 @@
       return this.topics.create(this.topic);
     };
 
-    NewTopicController.prototype.setQuestion = function(name, against) {
-      if (against == null) {
-        against = [];
-      }
-      return this.topic.questions[name] = against;
+    NewTopicController.prototype.setQuestion = function() {
+      var name;
+      console.log(':(');
+      return name = prompt('Enter a name');
     };
 
     NewTopicController.prototype.setTitle = function() {

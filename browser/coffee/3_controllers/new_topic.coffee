@@ -4,9 +4,13 @@ class NewTopicController
       name: 'Untitled Topic'
       user_id: settings.userId
       questions: {}
-  create: -> @topics.create(@topic)
-  setQuestion: (name, against = []) ->
-    @topic.questions[name] = against
+
+  create: ->
+    @topics.create(@topic)
+  setQuestion: () ->
+    console.log ':('
+    name = prompt('Enter a name')
+    # @topic.questions[name] = []
   setTitle: -> @topic.name = prompt('Enter New Name')
 
 angular
