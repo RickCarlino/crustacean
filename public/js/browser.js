@@ -6,10 +6,10 @@
 (function() {
   var Settings;
 
+  console.log(1);
+
   Settings = (function() {
-    function Settings() {
-      console.log('ApiSettings');
-    }
+    function Settings() {}
 
     Settings.prototype.userId = 1;
 
@@ -19,17 +19,22 @@
 
   })();
 
-  angular.module('crustacean').service('Settings', [Settings]);
+  angular.module('crustacean').service('Settings', Settings);
 
 }).call(this);
 
 (function() {
   var TopicService;
 
+  console.log(2);
+
   TopicService = (function() {
     function TopicService($http, settings) {
       this.$http = $http;
       this.settings = settings;
+      if (!settings) {
+        console.log(':(');
+      }
     }
 
     TopicService.prototype.all = [];
@@ -83,12 +88,20 @@
 (function() {
   var TopicForm;
 
+  console.log(3);
+
   TopicForm = (function() {
-    function TopicForm($http, settings) {
+    function TopicForm($http, Settings) {
       this.$http = $http;
-      this.settings = settings;
-      console.log("hi");
+      this.Settings = Settings;
+      if (!Settings) {
+        console.log(':(');
+      }
     }
+
+    TopicForm.prototype.name = 'Untitled Topic';
+
+    TopicForm.prototype.questions = {};
 
     TopicForm.prototype.insertQuestion = function(name) {
       return this.questions[name] = [];
@@ -99,42 +112,37 @@
     };
 
     TopicForm.prototype.insertPrompt = function(question, prompt) {
-      if (!this.questions[question]) {
-        return console.log("Could not find a question named " + prompt);
-      } else {
+      if (!!this.questions[prompt]) {
         return this.questions[question].push(prompt);
+      } else {
+        return console.log("Could not find a question named " + prompt);
       }
     };
 
     TopicForm.prototype.removePrompt = function(question, prompt) {
-      var oldOne;
-      if (!this.questions[prompt]) {
-        return console.log("Could not find a question named " + prompt);
-      } else {
-        return this.questions = (function() {
-          var _i, _len, _ref, _results;
-          _ref = this.questions;
-          _results = [];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            oldOne = _ref[_i];
-            if (oldOne !== prompt) {
-              _results.push(oldOne);
-            }
+      var x;
+      return this.questions[question] = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.questions;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          x = _ref[_i];
+          if (x !== prompt) {
+            _results.push(x);
           }
-          return _results;
-        }).call(this);
-      }
+        }
+        return _results;
+      }).call(this);
     };
 
     TopicForm.prototype.save = function() {
-      return console.log("do the AJAX");
+      this.user_id = this.settings.userId;
+      return $http.post('api/topics', this).success(function(i, s, o, g) {
+        debugger;
+      }).failure(function(i, s, o, g) {
+        debugger;
+      });
     };
-
-    TopicForm.prototype.name = 'Untitled Topic';
-
-    TopicForm.prototype.user_id = TopicForm.settings.userId;
-
-    TopicForm.prototype.questions = {};
 
     return TopicForm;
 
@@ -150,6 +158,8 @@
 
 (function() {
   var MainController;
+
+  console.log(4);
 
   MainController = (function() {
     function MainController($scope, $http, topics) {
@@ -175,15 +185,19 @@
 }).call(this);
 
 (function() {
-  debugger;
   var NewTopicController;
 
+  console.log(5);
+
   NewTopicController = (function() {
-    function NewTopicController($scope, $http, topics, settings, TopicForm) {
+    function NewTopicController($scope, $http, topics, Settings, TopicForm) {
       this.$scope = $scope;
       this.$http = $http;
       this.topics = topics;
-      this.settings = settings;
+      this.Settings = Settings;
+      if (!Settings) {
+        console.log(':(');
+      }
       this.topic = new TopicForm;
     }
 
@@ -192,11 +206,15 @@
     };
 
     NewTopicController.prototype.setQuestion = function() {
-      return this.topic.questions[prompt('Enter a name')] = ['one', 'two'];
+      return this.topic.insertQuestion(prompt('Enter a name'));
     };
 
     NewTopicController.prototype.setTitle = function() {
       return this.topic.name = prompt('Enter New Name');
+    };
+
+    NewTopicController.prototype.insertPrompt = function(main_q) {
+      return this.topic.insertPrompt(main_q, prompt('Enter the exact name of the other question'));
     };
 
     return NewTopicController;

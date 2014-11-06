@@ -1,3 +1,4 @@
+console.log 1
 class Settings
   userId: 1
   url: 'http://localhost:3000'

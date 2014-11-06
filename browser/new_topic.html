@@ -16,16 +16,25 @@
       Questions
       <button ng-click='ctrl.setQuestion()'>Add New Question</button>
     </h2>
-    <table ng-repeat="(main_q, counter_q) in ctrl.topic.questions">
-    <tr>
-      <td>
+    <div ng-repeat="(main_q, counter_q) in ctrl.topic.questions">
+      <h3>
         {{ main_q }}
-      </td>
-      <td ng-repeat="quest in counter_q">
-        <span> {{ quest }} </span>
-      </td>
-    </tr>
-    </table>
+        <button ng-click="ctrl.topic.removeQuestion(main_q)">
+          X
+        </button>
+        <button ng-click="ctrl.insertPrompt(main_q)">
+          Add Reviewable Questions
+        </button>
+      </h3>
+      <ul ng-repeat="quest in counter_q">
+        <li>
+          {{ quest }}
+          <button ng-click='ctrl.topic.removePrompt(main_q, quest)'>
+            X
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>

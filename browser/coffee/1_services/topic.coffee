@@ -1,5 +1,7 @@
+console.log 2
 class TopicService
   constructor: (@$http, @settings) ->
+    console.log ':(' unless !!settings
   all: []
 
   topicPath: (id) ->
@@ -22,5 +24,4 @@ class TopicService
     .success((data) => @all = data.topics)
     .error((data) => alert data.error)
 
-angular.module('crustacean')
-.service 'TopicService', ['$http', 'Settings', TopicService]
+angular.module('crustacean').service 'TopicService', ['$http', 'Settings', TopicService]

@@ -1,6 +1,8 @@
+console.log 3
 # Form object for creating a Topic on the API.
 class TopicForm
-  constructor: (@$http, @settings) ->
+  constructor: (@$http, @Settings) ->
+    console.log ':(' unless !!Settings
   name: 'Untitled Topic'
   # user_id: @settings.userId
   questions: {}
@@ -12,19 +14,22 @@ class TopicForm
 
   # TODO DRY up removePrompt and insertPrompt into a helper with cb.
   insertPrompt: (question, prompt) ->
-    if not @questions[question]
-      console.log "Could not find a question named #{prompt}"
-    else
+    if !!@questions[prompt]
       @questions[question].push(prompt)
+    else
+      console.log "Could not find a question named #{prompt}"
 
   removePrompt: (question, prompt) ->
-    if not @questions[prompt]
-      console.log "Could not find a question named #{prompt}"
-    else
-      @questions = (oldOne for oldOne in @questions when oldOne isnt prompt)
+    @questions[question] = (x for x in @questions when x isnt prompt)
 
   save: ->
-    console.log "do the AJAX"
+    @user_id = @settings.userId
+    @$http
+      .post('api/topics', this)
+      .success((i,s,o,g) -> debugger)
+      .failure((i,s,o,g) -> debugger)
 
 
-angular.module('crustacean').factory('TopicForm', ['$http', 'Settings', ->(TopicForm)])
+angular
+.module('crustacean')
+.factory('TopicForm', ['$http', 'Settings', ->(TopicForm)])
