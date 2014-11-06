@@ -1,6 +1,5 @@
 class TopicService
   constructor: (@$http, @settings) ->
-
   all: []
 
   topicPath: (id) ->

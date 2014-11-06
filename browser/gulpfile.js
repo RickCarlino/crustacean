@@ -36,13 +36,13 @@ gulp.task('publish', function(){
 // Server
 // =======================================================
 
-// gulp.task('connect', function() {
-//   plugin.connect.server({
-//     root: '.',
-//     port: '8000',
-//     livereload: true
-//   });
-// });
+gulp.task('connect', function() {
+  plugin.connect.server({
+    root: '.',
+    port: '8000',
+    livereload: true
+  });
+});
 
 // Watch
 // =======================================================
@@ -54,5 +54,5 @@ gulp.task('watch', ['compile'], function() {
 // Tasks
 // =======================================================
 
-gulp.task('default', ['watch'/*, 'connect'*/]);
+gulp.task('default', ['watch', 'connect']);
 gulp.task('compile', ['coffee', 'publish'])

@@ -14,16 +14,16 @@
     </h1>
     <h2>
       Questions
-      <button ng-click='alert(1)'>Add New Question</button>
+      <button ng-click='ctrl.setQuestion()'>Add New Question</button>
     </h2>
-    <table style="width:100%">
+    <table ng-repeat="(main_q, counter_q) in ctrl.topic.questions">
     <tr>
-    <td>Question</td>
-    <td>Reviewed Against</td>
-    </tr>
-    <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
+      <td>
+        {{ main_q }}
+      </td>
+      <td ng-repeat="quest in counter_q">
+        <span> {{ quest }} </span>
+      </td>
     </tr>
     </table>
   </div>

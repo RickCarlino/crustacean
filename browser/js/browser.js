@@ -4,12 +4,75 @@
 }).call(this);
 
 (function() {
+  var TopicForm;
+
+  TopicForm = (function() {
+    function TopicForm($http, settings) {
+      this.$http = $http;
+      this.settings = settings;
+    }
+
+    TopicForm.prototype.name = 'Untitled Topic';
+
+    TopicForm.prototype.questions = {};
+
+    TopicForm.prototype.insertQuestion = function(name) {
+      return this.questions[name] = [];
+    };
+
+    TopicForm.prototype.removeQuestion = function(name) {
+      return delete this.questions[name];
+    };
+
+    TopicForm.prototype.insertPrompt = function(question, prompt) {
+      if (!this.questions[question]) {
+        return console.log("Could not find a question named " + prompt);
+      } else {
+        return this.questions[question].push(prompt);
+      }
+    };
+
+    TopicForm.prototype.removePrompt = function(question, prompt) {
+      var oldOne;
+      if (!this.questions[prompt]) {
+        return console.log("Could not find a question named " + prompt);
+      } else {
+        return this.questions = (function() {
+          var _i, _len, _ref, _results;
+          _ref = this.questions;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            oldOne = _ref[_i];
+            if (oldOne !== prompt) {
+              _results.push(oldOne);
+            }
+          }
+          return _results;
+        }).call(this);
+      }
+    };
+
+    TopicForm.prototype.save = function() {
+      return console.log("do the AJAX");
+    };
+
+    return TopicForm;
+
+  })();
+
+  angular.module('crustacean').factory('TopicForm', [
+    '$http', 'Settings', function() {
+      return TopicForm;
+    }
+  ]);
+
+}).call(this);
+
+(function() {
   var Settings;
 
   Settings = (function() {
-    function Settings() {
-      console.log('ApiSettings');
-    }
+    function Settings() {}
 
     Settings.prototype.userId = 1;
 
@@ -19,7 +82,7 @@
 
   })();
 
-  angular.module('crustacean').service('Settings', [Settings]);
+  angular.module('crustacean').service('Settings', Settings);
 
 }).call(this);
 
@@ -110,26 +173,20 @@
   var NewTopicController;
 
   NewTopicController = (function() {
-    function NewTopicController($scope, $http, topics, settings) {
+    function NewTopicController($scope, $http, topics, Settings, TopicForm) {
       this.$scope = $scope;
       this.$http = $http;
       this.topics = topics;
-      this.settings = settings;
-      this.topic = {
-        name: 'Untitled Topic',
-        user_id: settings.userId,
-        questions: {}
-      };
+      this.Settings = Settings;
+      this.topic = new TopicForm;
     }
 
     NewTopicController.prototype.create = function() {
-      return this.topics.create(this.topic);
+      return this.topic.save();
     };
 
     NewTopicController.prototype.setQuestion = function() {
-      var name;
-      console.log(':(');
-      return name = prompt('Enter a name');
+      return this.topic.questions[prompt('Enter a name')] = ['one', 'two'];
     };
 
     NewTopicController.prototype.setTitle = function() {
@@ -140,6 +197,6 @@
 
   })();
 
-  angular.module("crustacean").controller("newTopicController", ["$scope", "$http", "TopicService", "Settings", NewTopicController]);
+  angular.module("crustacean").controller("newTopicController", ["$scope", "$http", "TopicService", "Settings", "TopicForm", NewTopicController]);
 
 }).call(this);
