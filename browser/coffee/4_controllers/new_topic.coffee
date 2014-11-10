@@ -2,7 +2,7 @@ console.log 5
 class NewTopicController
   constructor: (@$scope, @$http, @topics, @Settings, TopicForm) ->
     console.log ':(' unless !!Settings
-    @topic = new TopicForm
+    @topic = TopicForm
   create: -> @topic.save()
   setQuestion: -> @topic.insertQuestion(prompt('Enter a name'))
   setTitle: -> @topic.name = prompt('Enter New Name')

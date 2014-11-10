@@ -1,4 +1,6 @@
 (function() {
+  console.log(6);
+
   angular.module('crustacean', []);
 
 }).call(this);
@@ -88,15 +90,10 @@
 (function() {
   var TopicForm;
 
-  console.log(3);
-
   TopicForm = (function() {
-    function TopicForm($http, Settings) {
+    function TopicForm($http, settings) {
       this.$http = $http;
-      this.Settings = Settings;
-      if (!Settings) {
-        console.log(':(');
-      }
+      this.settings = settings;
     }
 
     TopicForm.prototype.name = 'Untitled Topic';
@@ -148,9 +145,9 @@
 
   })();
 
-  angular.module('crustacean').factory('TopicForm', [
-    '$http', 'Settings', function() {
-      return TopicForm;
+  angular.module('crustacean').factory("TopicForm", [
+    '$http', 'Settings', function($http, Settings) {
+      return new TopicForm($http, Settings);
     }
   ]);
 
@@ -198,7 +195,7 @@
       if (!Settings) {
         console.log(':(');
       }
-      this.topic = new TopicForm;
+      this.topic = TopicForm;
     }
 
     NewTopicController.prototype.create = function() {

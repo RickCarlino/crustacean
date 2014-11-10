@@ -1,4 +1,6 @@
 (function() {
+  console.log(6);
+
   angular.module('crustacean', []);
 
 }).call(this);
@@ -94,9 +96,7 @@
     function TopicForm($http, Settings) {
       this.$http = $http;
       this.Settings = Settings;
-      if (!Settings) {
-        console.log(':(');
-      }
+      debugger;
     }
 
     TopicForm.prototype.name = 'Untitled Topic';
@@ -137,7 +137,7 @@
 
     TopicForm.prototype.save = function() {
       this.user_id = this.settings.userId;
-      return $http.post('api/topics', this).success(function(i, s, o, g) {
+      return this.$http.post('api/topics', this).success(function(i, s, o, g) {
         debugger;
       }).failure(function(i, s, o, g) {
         debugger;

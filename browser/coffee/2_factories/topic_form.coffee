@@ -1,10 +1,7 @@
-console.log 3
 # Form object for creating a Topic on the API.
 class TopicForm
-  constructor: (@$http, @Settings) ->
-    console.log ':(' unless !!Settings
+  constructor: (@$http, @settings) ->
   name: 'Untitled Topic'
-  # user_id: @settings.userId
   questions: {}
   insertQuestion: (name) ->
     @questions[name] = []
@@ -29,7 +26,10 @@ class TopicForm
       .success((i,s,o,g) -> debugger)
       .failure((i,s,o,g) -> debugger)
 
-
 angular
 .module('crustacean')
-.factory('TopicForm', ['$http', 'Settings', ->(TopicForm)])
+.factory "TopicForm", [
+  '$http'
+  'Settings'
+  ($http, Settings) -> new TopicForm($http, Settings)
+]

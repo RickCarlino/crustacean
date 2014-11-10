@@ -24,4 +24,8 @@ class TopicService
     .success((data) => @all = data.topics)
     .error((data) => alert data.error)
 
-angular.module('crustacean').service 'TopicService', ['$http', 'Settings', TopicService]
+angular.module('crustacean').service 'TopicService', [
+  '$http'
+  'Settings'
+  TopicService
+]
