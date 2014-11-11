@@ -1,14 +1,10 @@
 (function() {
-  console.log(6);
-
   angular.module('crustacean', []);
 
 }).call(this);
 
 (function() {
   var Settings;
-
-  console.log(1);
 
   Settings = (function() {
     function Settings() {}
@@ -27,8 +23,6 @@
 
 (function() {
   var TopicService;
-
-  console.log(2);
 
   TopicService = (function() {
     function TopicService($http, settings) {
@@ -90,13 +84,10 @@
 (function() {
   var TopicForm;
 
-  console.log(3);
-
   TopicForm = (function() {
-    function TopicForm($http, Settings) {
+    function TopicForm($http, settings) {
       this.$http = $http;
-      this.Settings = Settings;
-      debugger;
+      this.settings = settings;
     }
 
     TopicForm.prototype.name = 'Untitled Topic';
@@ -136,21 +127,24 @@
     };
 
     TopicForm.prototype.save = function() {
+      var bad, good;
       this.user_id = this.settings.userId;
-      return this.$http.post('api/topics', this).success(function(i, s, o, g) {
+      good = function(resp, status, headers) {
         debugger;
-      }).failure(function(i, s, o, g) {
+      };
+      bad = function(resp, status, headers) {
         debugger;
-      });
+      };
+      return this.$http.post("" + this.settings.url + "/topics", this).success(good).error(bad);
     };
 
     return TopicForm;
 
   })();
 
-  angular.module('crustacean').factory('TopicForm', [
-    '$http', 'Settings', function() {
-      return TopicForm;
+  angular.module('crustacean').factory("TopicForm", [
+    '$http', 'Settings', function($http, Settings) {
+      return new TopicForm($http, Settings);
     }
   ]);
 
@@ -158,8 +152,6 @@
 
 (function() {
   var MainController;
-
-  console.log(4);
 
   MainController = (function() {
     function MainController($scope, $http, topics) {
@@ -187,8 +179,6 @@
 (function() {
   var NewTopicController;
 
-  console.log(5);
-
   NewTopicController = (function() {
     function NewTopicController($scope, $http, topics, Settings, TopicForm) {
       this.$scope = $scope;
@@ -198,7 +188,7 @@
       if (!Settings) {
         console.log(':(');
       }
-      this.topic = new TopicForm;
+      this.topic = TopicForm;
     }
 
     NewTopicController.prototype.create = function() {

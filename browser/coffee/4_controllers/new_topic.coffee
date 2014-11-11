@@ -1,4 +1,3 @@
-console.log 5
 class NewTopicController
   constructor: (@$scope, @$http, @topics, @Settings, TopicForm) ->
     console.log ':(' unless !!Settings

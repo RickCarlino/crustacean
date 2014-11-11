@@ -1,4 +1,3 @@
-console.log 4
 class MainController
   constructor: (@$scope, @$http, @topics) ->
   getTopics: -> @topics.fetch()

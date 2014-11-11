@@ -21,10 +21,9 @@ class TopicForm
 
   save: ->
     @user_id = @settings.userId
-    @$http
-      .post('api/topics', this)
-      .success((i,s,o,g) -> debugger)
-      .failure((i,s,o,g) -> debugger)
+    good     = (resp,status,headers) -> debugger
+    bad      = (resp,status,headers) -> debugger
+    @$http.post("#{@settings.url}/topics", this).success(good).error(bad)
 
 angular
 .module('crustacean')

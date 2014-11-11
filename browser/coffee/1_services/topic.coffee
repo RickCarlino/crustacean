@@ -1,4 +1,3 @@
-console.log 2
 class TopicService
   constructor: (@$http, @settings) ->
     console.log ':(' unless !!settings
