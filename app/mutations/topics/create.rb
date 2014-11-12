@@ -26,39 +26,38 @@ module Topics
 
 private
 
-  def validate_counter_questions
-    questions.map do |key, value|
-      value.each{|name| validate_counter_question(name)}
+    def validate_counter_questions
+      questions.map do |key, value|
+        value.each{|name| validate_counter_question(name)}
+      end
     end
-  end
 
-  def validate_counter_question(name)
-    unless questions.keys.include?(name)
-      add_error :questions, :counter_q, "Unexpected value #{name}. Was "\
-        "expecting one of the following: #{questions.keys.join(',')}."  
+    def validate_counter_question(name)
+      unless questions.keys.include?(name)
+        add_error :questions, :counter_q, "Unexpected value #{name}. Was "\
+          "expecting one of the following: #{questions.keys.join(',')}."
+      end
     end
-  end
 
-  # Takes a Hash<String:String[]> and turns it into a Hash<Question:Question[]>
-  # Used as an intermediate step for linking questions to a group of counter
-  # questions.
-  def question_map
-    # TODO get fancy with inject or sth.
-    question_map = {}
-    questions.map do |key, value|
-      list = make_questions(value)
-      question_map[Question.find_or_create_by(topic: topic, name: name)] = list
+    # Takes a Hash<String:String[]> and turns it into a Hash<Question:Question[]>
+    # Used as an intermediate step for linking questions to a group of counter
+    # questions.
+    def question_map
+      # TODO get fancy with inject or sth.
+      question_map = {}
+      questions.map do |key, value|
+        list = make_questions(value)
+        # SUSPECT ! =====
+        cq = Question.find_or_create_by(topic: topic, name: key)
+        question_map[cq] = list
+      end
+      question_map
     end
-    question_map
-  end
 
-  def make_questions(arry)
-    arry.map { |name| make_question(name) }
-  end
-
-  def make_question(name)
-    Question.find_or_create_by(topic: topic, name: name)
-  end
-
+    def make_questions(arry)
+      arry.map do |val|
+        Question.find_or_create_by(topic: topic, name: val)
+      end
+    end
   end
 end
