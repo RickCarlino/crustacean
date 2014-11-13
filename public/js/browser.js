@@ -13,11 +13,9 @@
       this.settings = settings;
       this.save = __bind(this.save, this);
       this.user_id = this.settings.userId;
+      this.name = 'Untitled Topic';
+      this.questions = {};
     }
-
-    TopicForm.prototype.name = 'Untitled Topic';
-
-    TopicForm.prototype.questions = {};
 
     TopicForm.prototype.insertQuestion = function(name) {
       return this.questions[name] = [];
@@ -52,13 +50,17 @@
     };
 
     TopicForm.prototype.save = function() {
+      this.questions = {
+        a: ['b'],
+        b: ['a']
+      };
       return this.$http.post("" + this.settings.url + "/topics", this).success((function(_this) {
         return function(resp, status, headers) {
-          debugger;
+          return console.log(resp.topic);
         };
       })(this)).error((function(_this) {
         return function(resp, status, headers) {
-          debugger;
+          return console.log(resp.topic);
         };
       })(this));
     };

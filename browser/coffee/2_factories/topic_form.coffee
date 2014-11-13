@@ -21,7 +21,6 @@ class TopicForm
     @questions[question] = (x for x in @questions when x isnt prompt)
 
   save: =>
-    this.questions = {a: ['b'], b: ['a']}
     @$http.post("#{@settings.url}/topics", this)
     .success((resp,status,headers) => console.log(resp.topic))
     .error((resp,status,headers) => console.log(resp.topic))

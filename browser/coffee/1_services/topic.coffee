@@ -20,7 +20,7 @@ class TopicService
   fetch: ->
     @$http
     .get(@topicPath(), {params: {user_id: @settings.userId}})
-    .success((data) => @all = data.topics)
+    .success((data) => console.log(@all = data.topics))
     .error((data) => alert data.error)
 
 angular.module('crustacean').service 'TopicService', [

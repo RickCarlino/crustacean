@@ -15,8 +15,7 @@ module Topics
 
     def execute
       ActiveRecord::Base.transaction do
-        @topic = Topic.create
-        topic.name = name
+        @topic = Topic.create(name: name)
         question_map.map do |ques, counter|
           ques.counter_questions += counter
         end

@@ -29,9 +29,11 @@ class TopicsControllerTest < ActionController::TestCase
                            type:  [],
                            color:  [:breed]}}
     post :create, params
+    topic = Topic.find(json[:topic][:id])
     after = Topic.count
     assert_response :success
     assert_equal 'chickens', json[:topic][:name]
+    assert_equal 'chickens', topic.name
     expected_questions = ["breed", "color", "type"]
     actual_questions   = json[:topic][:questions].sort
     assert_equal expected_questions, actual_questions
