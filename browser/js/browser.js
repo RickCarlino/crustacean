@@ -43,20 +43,6 @@
       }
     };
 
-    TopicService.prototype.create = function(params, cb) {
-      params.params = {};
-      params.params.user_id = this.settings.userId;
-      return this.$http.post(this.topicPath(), params).success((function(_this) {
-        return function(data) {
-          return cb();
-        };
-      })(this)).error((function(_this) {
-        return function(data) {
-          return alert(data.error);
-        };
-      })(this));
-    };
-
     TopicService.prototype.fetch = function() {
       return this.$http.get(this.topicPath(), {
         params: {
@@ -127,6 +113,14 @@
       }).call(this);
     };
 
+    TopicForm.prototype.togglePrompt = function(question, counterQuestion) {
+      if (this.questions[question].indexOf(counterQuestion) === -1) {
+        return this.insertPrompt(question, counterQuestion);
+      } else {
+        return this.removePrompt(question, counterQuestion);
+      }
+    };
+
     TopicForm.prototype.save = function() {
       return this.$http.post("" + this.settings.url + "/topics", this).success((function(_this) {
         return function(resp, status, headers) {
@@ -186,26 +180,36 @@
       this.$http = $http;
       this.topics = topics;
       this.Settings = Settings;
-      if (!Settings) {
-        console.log(':(');
-      }
       this.topic = TopicForm;
     }
+
+    NewTopicController.prototype.step = 0;
+
+    NewTopicController.prototype.up = function() {
+      return this.step = this.step + 1;
+    };
+
+    NewTopicController.prototype.down = function() {
+      if (this.step > 1) {
+        return this.step = this.step - 1;
+      }
+    };
 
     NewTopicController.prototype.create = function() {
       return this.topic.save();
     };
 
+    NewTopicController.prototype.hasQuestions = function() {
+      return Object.keys(this.topic.questions).length > 0;
+    };
+
+    NewTopicController.prototype.insertPrompt = function(ques, prompt) {
+      return this.topic.togglePrompt(ques, prompt);
+    };
+
     NewTopicController.prototype.setQuestion = function() {
-      return this.topic.insertQuestion(prompt('Enter a name'));
-    };
-
-    NewTopicController.prototype.setTitle = function() {
-      return this.topic.name = prompt('Enter New Name');
-    };
-
-    NewTopicController.prototype.insertPrompt = function(main_q) {
-      return this.topic.insertPrompt(main_q, prompt('Enter the exact name of the other question'));
+      this.topic.insertQuestion(this.newQuestion);
+      return this.newQuestion = '';
     };
 
     return NewTopicController;

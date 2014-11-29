@@ -9,14 +9,6 @@ class TopicService
     else
       "#{@settings.url}/topics"
 
-  create: (params, cb) ->
-    params.params = {}
-    params.params.user_id = @settings.userId
-    @$http
-    .post(@topicPath(), params)
-    .success((data) => cb())
-    .error((data) => alert data.error)
-
   fetch: ->
     @$http
     .get(@topicPath(), {params: {user_id: @settings.userId}})

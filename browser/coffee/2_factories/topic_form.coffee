@@ -4,6 +4,7 @@ class TopicForm
     @user_id   = @settings.userId
     @name      = 'Untitled Topic'
     @questions = {}
+
   insertQuestion: (name) ->
     @questions[name] = []
 
@@ -19,6 +20,13 @@ class TopicForm
 
   removePrompt: (question, prompt) ->
     @questions[question] = (x for x in @questions when x isnt prompt)
+
+  togglePrompt: (question, counterQuestion) ->
+    if @questions[question].indexOf(counterQuestion) == -1
+      @insertPrompt(question, counterQuestion)
+    else
+      @removePrompt(question, counterQuestion)
+
 
   save: =>
     @$http.post("#{@settings.url}/topics", this)

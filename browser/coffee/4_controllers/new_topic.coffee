@@ -1,13 +1,16 @@
 class NewTopicController
   constructor: (@$scope, @$http, @topics, @Settings, TopicForm) ->
-    console.log ':(' unless !!Settings
     @topic = TopicForm
+  step: 0
+  up: -> @step = @step + 1
+  down: -> @step = @step - 1 if @step > 1
   create: -> @topic.save()
-  setQuestion: -> @topic.insertQuestion(prompt('Enter a name'))
-  setTitle: -> @topic.name = prompt('Enter New Name')
-  insertPrompt: (main_q) ->
-    @topic.insertPrompt(main_q,
-      prompt('Enter the exact name of the other question'))
+  hasQuestions: -> Object.keys(@topic.questions).length > 0
+  insertPrompt: (ques, prompt) -> @topic.togglePrompt(ques, prompt)
+  setQuestion: ->
+    @topic.insertQuestion(@newQuestion)
+    @newQuestion = ''
+
 angular
 .module("crustacean")
 .controller("newTopicController",

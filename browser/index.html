@@ -10,12 +10,11 @@
     <h1>
       Topics
       <button ng-click="ctrl.getTopics()">Refresh</button>
-      <button ng-click="ctrl.createTopic()">New Topic</button>
     </h1>
+    <a href="/new_topic.html">New Topic</a>
     <ul ng-repeat="topic in ctrl.topics.all">
       <li>{{ topic.name }}</li>
     </ul>
-    <a href="/new_topic.html">New Topic...</a>
   </div>
 </body>
 </html>

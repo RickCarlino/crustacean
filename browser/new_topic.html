@@ -7,34 +7,43 @@
 </head>
 <body ng-app='crustacean'>
   <div ng-controller='newTopicController as ctrl'>
-    <h1>
-      {{ctrl.topic.name}}
-      <button ng-click="ctrl.setTitle()">Edit Name</button>
-      <button ng-click="ctrl.create()">Save</button>
-    </h1>
-    <h2>
-      Questions
-      <button ng-click='ctrl.setQuestion()'>Add New Question</button>
-    </h2>
-    <div ng-repeat="(main_q, counter_q) in ctrl.topic.questions">
-      <h3>
-        {{ main_q }}
-        <button ng-click="ctrl.topic.removeQuestion(main_q)">
-          X
-        </button>
-        <button ng-click="ctrl.insertPrompt(main_q)">
-          Add Reviewable Questions
-        </button>
-      </h3>
-      <ul ng-repeat="quest in counter_q">
-        <li>
-          {{ quest }}
-          <button ng-click='ctrl.topic.removePrompt(main_q, quest)'>
-            X
-          </button>
-        </li>
-      </ul>
+    <div ng-if="ctrl.step === 0">
+      <input type='text' ng-model='ctrl.topic.name'>
+      <button ng-click='ctrl.up()'>Next</button>
     </div>
+
+    <div ng-if="ctrl.step === 1">
+      <h1>What type of questions will you ask?</h1>
+      <p>Make a list. Examples: a topic called "dogs" would have questions like "breed name" and "color".</p>
+      <input type='text' ng-model='ctrl.newQuestion'>
+      <button ng-click='ctrl.setQuestion()'>
+        Insert Question Field
+      </button>
+      <div ng-if="ctrl.hasQuestions()">
+        <h2>Question List:</h2>
+        <ul ng-repeat="(q, a) in ctrl.topic.questions">
+          <li>{{ q }}</li>
+        </ul>
+        <button ng-click='ctrl.down()'>Prev</button>
+        <button ng-click='ctrl.up()'>Next</button>
+      </div>
+    </div>
+
+    <div ng-if="ctrl.step === 2">
+      <h1>Which questions to review against which?</h1>
+      <p>Think this one over closely. You might not want to review all question types against each other. For example: In the "dogs" topic, it would make sense to review "breed" against "color", but not the other way around. If it were reviewed in the other direction, it might not be possible to always pick a correct answer because many breeds can have the same color. **Only review against distinct questions that are unique / distinct**.</p>
+      <div ng-repeat="(q, a) in ctrl.topic.questions">
+        <h1>{{ q }}</h1>
+        <div ng-repeat="(q2, a2) in ctrl.topic.questions">
+          <div ng-if="q2 !== q">
+            <input type='checkbox' ng-click='ctrl.insertPrompt(q, q2)'>{{q2}}
+          </div>
+        </div>
+      </div>
+      <button ng-click='ctrl.down()'>Prev</button>
+      <button ng-click='ctrl.up()'>Next</button>
+    </div>
+
   </div>
 </body>
 </html>

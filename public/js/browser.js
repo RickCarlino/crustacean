@@ -4,80 +4,6 @@
 }).call(this);
 
 (function() {
-  var TopicForm,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-  TopicForm = (function() {
-    function TopicForm($http, settings) {
-      this.$http = $http;
-      this.settings = settings;
-      this.save = __bind(this.save, this);
-      this.user_id = this.settings.userId;
-      this.name = 'Untitled Topic';
-      this.questions = {};
-    }
-
-    TopicForm.prototype.insertQuestion = function(name) {
-      return this.questions[name] = [];
-    };
-
-    TopicForm.prototype.removeQuestion = function(name) {
-      return delete this.questions[name];
-    };
-
-    TopicForm.prototype.insertPrompt = function(question, prompt) {
-      if (!!this.questions[prompt]) {
-        return this.questions[question].push(prompt);
-      } else {
-        return console.log("Could not find a question named " + prompt);
-      }
-    };
-
-    TopicForm.prototype.removePrompt = function(question, prompt) {
-      var x;
-      return this.questions[question] = (function() {
-        var _i, _len, _ref, _results;
-        _ref = this.questions;
-        _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          x = _ref[_i];
-          if (x !== prompt) {
-            _results.push(x);
-          }
-        }
-        return _results;
-      }).call(this);
-    };
-
-    TopicForm.prototype.save = function() {
-      this.questions = {
-        a: ['b'],
-        b: ['a']
-      };
-      return this.$http.post("" + this.settings.url + "/topics", this).success((function(_this) {
-        return function(resp, status, headers) {
-          return console.log(resp.topic);
-        };
-      })(this)).error((function(_this) {
-        return function(resp, status, headers) {
-          return console.log(resp.topic);
-        };
-      })(this));
-    };
-
-    return TopicForm;
-
-  })();
-
-  angular.module('crustacean').factory("TopicForm", [
-    '$http', 'Settings', function($http, Settings) {
-      return new TopicForm($http, Settings);
-    }
-  ]);
-
-}).call(this);
-
-(function() {
   var Settings;
 
   Settings = (function() {
@@ -138,7 +64,7 @@
         }
       }).success((function(_this) {
         return function(data) {
-          return _this.all = data.topics;
+          return console.log(_this.all = data.topics);
         };
       })(this)).error((function(_this) {
         return function(data) {
@@ -152,6 +78,76 @@
   })();
 
   angular.module('crustacean').service('TopicService', ['$http', 'Settings', TopicService]);
+
+}).call(this);
+
+(function() {
+  var TopicForm,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  TopicForm = (function() {
+    function TopicForm($http, settings) {
+      this.$http = $http;
+      this.settings = settings;
+      this.save = __bind(this.save, this);
+      this.user_id = this.settings.userId;
+      this.name = 'Untitled Topic';
+      this.questions = {};
+    }
+
+    TopicForm.prototype.insertQuestion = function(name) {
+      return this.questions[name] = [];
+    };
+
+    TopicForm.prototype.removeQuestion = function(name) {
+      return delete this.questions[name];
+    };
+
+    TopicForm.prototype.insertPrompt = function(question, prompt) {
+      if (!!this.questions[prompt]) {
+        return this.questions[question].push(prompt);
+      } else {
+        return console.log("Could not find a question named " + prompt);
+      }
+    };
+
+    TopicForm.prototype.removePrompt = function(question, prompt) {
+      var x;
+      return this.questions[question] = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.questions;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          x = _ref[_i];
+          if (x !== prompt) {
+            _results.push(x);
+          }
+        }
+        return _results;
+      }).call(this);
+    };
+
+    TopicForm.prototype.save = function() {
+      return this.$http.post("" + this.settings.url + "/topics", this).success((function(_this) {
+        return function(resp, status, headers) {
+          return console.log(resp.topic);
+        };
+      })(this)).error((function(_this) {
+        return function(resp, status, headers) {
+          return console.log(resp.topic);
+        };
+      })(this));
+    };
+
+    return TopicForm;
+
+  })();
+
+  angular.module('crustacean').factory("TopicForm", [
+    '$http', 'Settings', function($http, Settings) {
+      return new TopicForm($http, Settings);
+    }
+  ]);
 
 }).call(this);
 
